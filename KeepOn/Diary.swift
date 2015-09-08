@@ -23,6 +23,8 @@ class Diary {
     
     var color: UIColor = UIColor.orangeColor()
     
+    var icon: String = "menu-diary"
+    
     init(id: Int, name: String){
         self.id = id
         self.name = name
@@ -93,12 +95,6 @@ class Diary {
         if let end = firstDate.sameDateByAddingMonths(1) {
             endDate = end
         }
-        
-        let formater2 = NSDateFormatter()
-        formater2.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        NSLog("startDate=\(formater2.stringFromDate(firstDate))")
-        NSLog("endDate=\(formater2.stringFromDate(endDate))")
         
         return finishedDaysByDuration(firstDate, endDate: endDate)
     }

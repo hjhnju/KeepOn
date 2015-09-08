@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vqI-DG-Po3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Diary View Controller-->
@@ -62,7 +63,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.98859690659999999" green="0.70281404800000002" blue="0.14861379499999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="OdE-T0-NGY" firstAttribute="top" secondItem="OPU-Jz-fDY" secondAttribute="bottom" id="Tf5-7o-1te"/>
                                     <constraint firstAttribute="height" constant="118" id="X1W-rO-jIw"/>
@@ -101,6 +102,11 @@
                                 <action selector="toggleMenu:" destination="8sq-b1-TaM" id="jlx-ed-lfi"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Nwh-5I-7Ca">
+                            <connections>
+                                <action selector="editDiary:" destination="8sq-b1-TaM" id="OfL-zp-PdU"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="calMenuView" destination="ZXo-Ae-SVU" id="qXE-ca-rej"/>
@@ -110,11 +116,12 @@
                         <outlet property="monthTipLabel" destination="wJB-WN-OiX" id="UDK-SA-Fys"/>
                         <outlet property="totalCountLabel" destination="OPU-Jz-fDY" id="Yxw-NM-LnP"/>
                         <outlet property="totalTipLabel" destination="OdE-T0-NGY" id="fz4-rM-3wF"/>
+                        <segue destination="JAm-Ie-dKf" kind="show" identifier="ShowAddDiarySegue" id="1Gp-pI-csu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MBh-VZ-Lpa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1013" y="184"/>
+            <point key="canvasLocation" x="1046" y="184"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TFm-9p-pp2">
@@ -133,6 +140,114 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EBY-OE-XDh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="201" y="184"/>
+        </scene>
+        <!--Add Diary View Controller-->
+        <scene sceneID="KU0-LO-8Jb">
+            <objects>
+                <viewController storyboardIdentifier="AddDiaryViewControllerID" id="DW0-lO-pEV" customClass="AddDiaryViewController" customModule="KeepOn" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Kkf-Jk-DAC"/>
+                        <viewControllerLayoutGuide type="bottom" id="FnW-4l-WHS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LW0-Xv-W1k">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="起个你喜欢的日历名称" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISd-48-G3Q" userLabel="diaryNameLabel">
+                                <rect key="frame" x="16" y="84" width="568" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="日历名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Akv-DL-6TB" userLabel="diaryNameField">
+                                <rect key="frame" x="16" y="111" width="568" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="UYk-YY-ZHl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择一个日历颜色" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0b-j6-dJS" userLabel="colorPickLabel">
+                                <rect key="frame" x="16" y="161" width="568" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TGY-hj-3DT" userLabel="colorPickView">
+                                <rect key="frame" x="16" y="188" width="568" height="40"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="3k3-OT-RqA"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qDR-Ls-fgb" userLabel="saveButton">
+                                <rect key="frame" x="16" y="278" width="568" height="36"/>
+                                <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="现在开始吧"/>
+                                <connections>
+                                    <segue destination="KsH-IN-Tf4" kind="unwind" identifier="UnwindSaveSegue" unwindAction="unwindToSave:" id="Lto-jP-qLE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ISd-48-G3Q" firstAttribute="top" secondItem="Kkf-Jk-DAC" secondAttribute="bottom" constant="20" id="3NO-Av-TBC"/>
+                            <constraint firstItem="FnW-4l-WHS" firstAttribute="top" secondItem="TGY-hj-3DT" secondAttribute="bottom" constant="398" id="9hu-0x-ZKg"/>
+                            <constraint firstItem="TGY-hj-3DT" firstAttribute="top" secondItem="V0b-j6-dJS" secondAttribute="bottom" constant="10" id="Gdu-gS-BOO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qDR-Ls-fgb" secondAttribute="trailing" id="ITZ-GC-biA"/>
+                            <constraint firstItem="Akv-DL-6TB" firstAttribute="top" secondItem="ISd-48-G3Q" secondAttribute="bottom" constant="10" id="OWn-cB-MnN"/>
+                            <constraint firstItem="Akv-DL-6TB" firstAttribute="trailing" secondItem="ISd-48-G3Q" secondAttribute="trailing" id="ZNE-CH-UyQ"/>
+                            <constraint firstItem="TGY-hj-3DT" firstAttribute="leading" secondItem="V0b-j6-dJS" secondAttribute="leading" id="aaQ-bi-hSQ"/>
+                            <constraint firstItem="V0b-j6-dJS" firstAttribute="trailing" secondItem="Akv-DL-6TB" secondAttribute="trailing" id="bOs-5L-m5o"/>
+                            <constraint firstItem="TGY-hj-3DT" firstAttribute="trailing" secondItem="V0b-j6-dJS" secondAttribute="trailing" id="hL9-WX-rqN"/>
+                            <constraint firstItem="V0b-j6-dJS" firstAttribute="leading" secondItem="Akv-DL-6TB" secondAttribute="leading" id="ix6-7D-Kb6"/>
+                            <constraint firstItem="ISd-48-G3Q" firstAttribute="leading" secondItem="LW0-Xv-W1k" secondAttribute="leadingMargin" id="naq-KD-DQA"/>
+                            <constraint firstItem="V0b-j6-dJS" firstAttribute="top" secondItem="Akv-DL-6TB" secondAttribute="bottom" constant="10" id="o8u-eW-Yc3"/>
+                            <constraint firstItem="FnW-4l-WHS" firstAttribute="top" secondItem="ISd-48-G3Q" secondAttribute="bottom" constant="485" id="qfY-pB-SFZ"/>
+                            <constraint firstItem="Akv-DL-6TB" firstAttribute="leading" secondItem="ISd-48-G3Q" secondAttribute="leading" id="s5U-87-eOG"/>
+                            <constraint firstItem="qDR-Ls-fgb" firstAttribute="top" secondItem="TGY-hj-3DT" secondAttribute="bottom" constant="50" id="tcY-bL-3Xk"/>
+                            <constraint firstItem="qDR-Ls-fgb" firstAttribute="leading" secondItem="LW0-Xv-W1k" secondAttribute="leadingMargin" id="y9y-Hv-Q1e"/>
+                            <constraint firstItem="ISd-48-G3Q" firstAttribute="trailing" secondItem="LW0-Xv-W1k" secondAttribute="trailingMargin" id="z7g-FT-MbI"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="9hu-0x-ZKg"/>
+                                <exclude reference="qfY-pB-SFZ"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="KNF-5X-09Q"/>
+                    <connections>
+                        <outlet property="colorPickLabel" destination="V0b-j6-dJS" id="nDJ-hJ-7a8"/>
+                        <outlet property="colorPickView" destination="TGY-hj-3DT" id="g9d-Fx-vCb"/>
+                        <outlet property="diaryNameField" destination="Akv-DL-6TB" id="kdj-el-2fv"/>
+                        <outlet property="diaryNameLabel" destination="ISd-48-G3Q" id="9wL-qC-aQw"/>
+                        <outlet property="saveButton" destination="qDR-Ls-fgb" id="QgO-pk-OQ3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PIH-lO-791" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="KsH-IN-Tf4" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2498" y="184"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="s9h-VX-D4M">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JAm-Ie-dKf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j1b-8k-Bg0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="DW0-lO-pEV" kind="relationship" relationship="rootViewController" id="n0f-ms-84i"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qbK-Tv-ZjU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1715" y="184"/>
         </scene>
     </scenes>
 </document>

@@ -41,13 +41,13 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="途知 GetOnTrip" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDc-jK-uW1" userLabel="product">
-                                <rect key="frame" x="257" y="564" width="84.5" height="14.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KeepOn Diary" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDc-jK-uW1" userLabel="product">
+                                <rect key="frame" x="260.5" y="564" width="77.5" height="14.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NAE-nr-SGa">
-                                <rect key="frame" x="0.0" y="220" width="600" height="300"/>
+                                <rect key="frame" x="0.0" y="186" width="600" height="334"/>
                                 <connections>
                                     <segue destination="cRj-61-26Q" kind="embed" id="Jod-yU-Seo"/>
                                 </connections>
@@ -56,9 +56,10 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="gap-5Q-rSD" secondAttribute="centerX" id="0Co-F4-ifs"/>
                             <constraint firstAttribute="trailing" secondItem="NAE-nr-SGa" secondAttribute="trailing" id="96h-Ig-bl6"/>
-                            <constraint firstItem="NAE-nr-SGa" firstAttribute="top" secondItem="rkx-KX-H3J" secondAttribute="bottom" constant="200" id="IDk-yd-b5Z"/>
+                            <constraint firstItem="NAE-nr-SGa" firstAttribute="top" secondItem="rkx-KX-H3J" secondAttribute="bottom" constant="150" id="IDk-yd-b5Z"/>
                             <constraint firstAttribute="centerX" secondItem="h0T-sO-qjn" secondAttribute="centerX" id="JDb-Bx-ufb"/>
                             <constraint firstItem="23V-sU-2xd" firstAttribute="top" secondItem="gap-5Q-rSD" secondAttribute="bottom" constant="8" id="K2T-XH-vYk"/>
+                            <constraint firstItem="NAE-nr-SGa" firstAttribute="top" secondItem="23V-sU-2xd" secondAttribute="bottom" constant="20" id="L5B-uz-o8C"/>
                             <constraint firstItem="gap-5Q-rSD" firstAttribute="centerX" secondItem="23V-sU-2xd" secondAttribute="centerX" id="MJQ-Gi-iN1"/>
                             <constraint firstItem="gap-5Q-rSD" firstAttribute="topMargin" secondItem="rkx-KX-H3J" secondAttribute="bottom" constant="58" id="RdZ-6R-w6k"/>
                             <constraint firstItem="cDc-jK-uW1" firstAttribute="centerX" secondItem="h0T-sO-qjn" secondAttribute="centerX" id="T31-wX-6JF"/>
@@ -67,10 +68,16 @@
                             <constraint firstItem="h0T-sO-qjn" firstAttribute="top" secondItem="cDc-jK-uW1" secondAttribute="bottom" id="ykk-oj-xoU"/>
                             <constraint firstItem="NAE-nr-SGa" firstAttribute="leading" secondItem="Fta-AA-2Jf" secondAttribute="leading" id="zWx-L4-roE"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="IDk-yd-b5Z"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="hWf-yg-7EC"/>
                     <connections>
                         <outlet property="headButton" destination="23V-sU-2xd" id="c59-F4-12W"/>
+                        <outlet property="versionLabel" destination="h0T-sO-qjn" id="hhz-hv-ALH"/>
                         <outlet property="welcome" destination="gap-5Q-rSD" id="6z7-e1-j8d"/>
                     </connections>
                 </viewController>
@@ -83,7 +90,7 @@
             <objects>
                 <tableViewController id="cRj-61-26Q" customClass="MenuTableViewController" customModule="KeepOn" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wq3-BU-7nC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="334"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>

@@ -14,6 +14,7 @@ class MenuViewController: UIViewController {
     
     @IBOutlet weak var welcome: UILabel!
     @IBOutlet weak var headButton: UIButton!
+    @IBOutlet weak var versionLabel: UILabel!
     
     var logined: Bool = true
     

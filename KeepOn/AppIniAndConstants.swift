@@ -29,6 +29,11 @@ struct StoryBoardIdentifier {
     //diary
     static let DiaryNavViewControllerID = "DiaryNavViewControllerID"
     static let DiaryViewControllerID   = "DiaryViewControllerID"
+    static let AddDiaryViewControllerID = "AddDiaryViewControllerID"
+    
+    //segue
+    static let ShowAddDiarySegue = "ShowAddDiarySegue"
+    static let UnwindSaveSegue = "UnwindSaveSegue"
 }
 
 struct SceneColor {

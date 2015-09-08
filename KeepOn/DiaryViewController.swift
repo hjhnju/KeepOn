@@ -59,16 +59,32 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
         calMenuView.scrollView.scrollEnabled = false
         
         if diary == nil {
-            let diarys = DiaryDAO.instance.findAll()
-            diary = diarys.first
+            //优先所见的最后视图
+            if let id = DiaryPlistDAO.instance.getLastViewDiaryId() {
+                diary = DiaryDAO.instance.findById(id)
+            }
+            //无则第一则日历
+            else {
+                let diarys = DiaryDAO.instance.findAll()
+                diary = diarys.first
+            }
+            
+            //还为空则默认创建一个
+            if diary == nil {
+                let id = DiaryPlistDAO.instance.getAvailableMaxDiaryId()
+                diary = Diary(id: id, name: "KeepOn Diary")
+                DiaryDAO.instance.create(diary)
+            }
         }
+        
+//        let diarys = DiaryDAO.instance.findAll()
+//        DiaryDAO.instance.remove(diarys.last!)
     }
     
     //refresh diary data
     func refresh() {
         self.title = diary.name
         self.manager.reload()
-        
         
         let monthDate = manager.date()
         let formater = NSDateFormatter()
@@ -119,7 +135,7 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
         dv.circleView.hidden = true
         dv.dotView.hidden    = true
         dv.emptyCircleView.hidden = true
-        dv.dotView.backgroundColor = UIColor.orangeColor()
+        dv.dotView.backgroundColor = diary?.color
         dv.textLabel.textColor     = UIColor.blackColor()
         let now = NSDate()
         
@@ -143,7 +159,7 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
         //有任务达成的日期，显示“圈”
         if diary?.isFinishDay(dv.date) == true {
             dv.circleView.hidden          = false
-            dv.circleView.backgroundColor = UIColor.orangeColor()
+            dv.circleView.backgroundColor = diary.color
             dv.dotView.backgroundColor    = UIColor.whiteColor()
             dv.textLabel.textColor        = UIColor.whiteColor()
         }
@@ -197,6 +213,33 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
     func calendarDidLoadPreviousPage(calendar: JTCalendarManager!) {
         refreshMonth()
     }
+    
+    // MARK: Segues
+    
+    @IBAction func editDiary(sender: UIBarButtonItem) {
+        performSegueWithIdentifier(StoryBoardIdentifier.ShowAddDiarySegue, sender: self.diary)
+        
+        //let addDiaryViewController = AddDiaryViewController()
+        //addDiaryViewController.diary = self.diary
+        //self.navigationController?.pushViewController(addDiaryViewController, animated: true)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == StoryBoardIdentifier.ShowAddDiarySegue {
+            let avc = segue.destinationViewController.visibleViewController as! AddDiaryViewController
+            avc.diary = sender as? Diary
+        }
+    }
+    
+    @IBAction func unwindToSave(segue: UIStoryboardSegue) {
+        if let addDiaryViewController = segue.sourceViewController as? AddDiaryViewController {
+            if let refreshDiary = addDiaryViewController.diary {
+                self.diary = refreshDiary
+            }
+        }
+    }
+    
+    
 
 }
 

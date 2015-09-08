@@ -8,33 +8,39 @@
 
 import UIKit
 
-struct ItemType {
-    static let Overview = -1
+struct TableViewConstants {
+    //item types
     static let Diary = 0
     static let Index = 1
+    static let Setting = 2
+    
+    //header inset
+    static let EdgeInsetForCell: CGFloat = 10
 }
 
 class MenuTableViewController: UITableViewController {
     
     //MASK: Properties
     
-    var menuTotal:[Int: Dictionary<String, String>] = [
-        0:["text":"仪表盘", "icon":""],
+    var menuOverview:[Int: Dictionary<String, String>] = [
+        0:["text":"添加新日历", "icon":"menu-setting", "segue":"ShowAddDiarySegue"],
     ]
 
-    var menuDiary:[Int: Diary] = [
-        1: Diary(id: 2, name: "膝盖锻炼"),
-        0: Diary(id: 1, name: "郑多燕有氧操"),
-    ]
+    var menuDiary = [Diary]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
-    var menuVariable:[Int: Dictionary<String, String>] = [
-        0:["text":"体重", "icon":""],
-    ]
+    var menuIndex:[Int: Dictionary<String, String>] = [
+        0:["text":"体重", "icon":"menu-feedback"],
+        ] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
-    var menuSectionData:[Int: Dictionary<String, String>] = [
-        0:["title":"日历", "items":"2"],
-        1:["title":"指数", "items":"1"],
-    ]
+    var sectionTitle:[String] = ["日历", "指数", "设置"]
     
     //MASK: View Life Cycle
 
@@ -46,6 +52,10 @@ class MenuTableViewController: UITableViewController {
         tableView.backgroundColor = UIColor.clearColor()
         tableView.scrollEnabled   = false
         tableView.separatorStyle  = UITableViewCellSeparatorStyle.None
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        menuDiary = DiaryDAO.instance.findAll()
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,30 +76,44 @@ class MenuTableViewController: UITableViewController {
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return menuSectionData.count
+        return sectionTitle.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Tells the data source to return the number of rows in a given section of a table view. (required)
-        let cnt =  menuSectionData[section]!["items"]!
-        return cnt.toInt()!
+        var num: Int = 0
+        switch section {
+        case TableViewConstants.Setting:
+            num = menuOverview.count
+            break
+        case TableViewConstants.Diary:
+            num = menuDiary.count
+            break
+        case TableViewConstants.Index:
+            num = menuIndex.count
+        default:break
+        }
+        
+        return num
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(StoryBoardIdentifier.MenuTabelCellID, forIndexPath: indexPath) as! UITableViewCell
         
         switch indexPath.section {
-        case ItemType.Overview:
-            cell.textLabel?.text = menuTotal[indexPath.row]!["text"]!
-            cell.imageView?.image = UIImage(named: menuTotal[indexPath.row]!["icon"]!)
+        case TableViewConstants.Setting:
+            cell.textLabel?.text = menuOverview[indexPath.row]!["text"]!
+            cell.imageView?.image = UIImage(named: menuOverview[indexPath.row]!["icon"]!)
             break
-        case ItemType.Diary:
+        case TableViewConstants.Diary:
             let diary = menuDiary[indexPath.row]
-            cell.textLabel?.text = diary?.name
+            cell.textLabel?.text = diary.name
+            cell.imageView?.image = UIImage(named: diary.icon)
+            //cell.imageView?.tintColor = diary.color
             break
-        case ItemType.Index:
-            cell.textLabel?.text = menuVariable[indexPath.row]!["text"]!
-            cell.imageView?.image = UIImage(named: menuVariable[indexPath.row]!["icon"]!)
+        case TableViewConstants.Index:
+            cell.textLabel?.text = menuIndex[indexPath.row]!["text"]!
+            cell.imageView?.image = UIImage(named: menuIndex[indexPath.row]!["icon"]!)
             break
         default:break
         }
@@ -100,7 +124,7 @@ class MenuTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return menuSectionData[section]!["title"]
+        return sectionTitle[section]
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -113,15 +137,15 @@ class MenuTableViewController: UITableViewController {
         let headerView = UIView()
         headerView.backgroundColor = UIColor.clearColor()
         let headerHeight: CGFloat = 21
-        let headerWidth: CGFloat  = tableView.frame.width
+        let headerWidth: CGFloat  = tableView.frame.width - 2 * TableViewConstants.EdgeInsetForCell
         
         let label = UILabel()
-        label.frame = CGRectMake(0, 0, headerWidth, headerHeight)
+        label.frame = CGRectMake(TableViewConstants.EdgeInsetForCell, 0, headerWidth, headerHeight)
         label.text = title
         label.font = UIFont(name: SceneFont.heiti, size: 12)
         
         let line   = UIView()
-        line.frame = CGRectMake(0, headerHeight-1, headerWidth, 0.5)
+        line.frame = CGRectMake(TableViewConstants.EdgeInsetForCell, headerHeight-1, headerWidth, 0.5)
         line.backgroundColor = SceneColor.crystalWhite
         headerView.addSubview(line)
         
@@ -133,15 +157,21 @@ class MenuTableViewController: UITableViewController {
         self.tableView!.deselectRowAtIndexPath(indexPath, animated: true)
         
         switch indexPath.section {
-        case ItemType.Overview:break
-        case ItemType.Diary:
+        case TableViewConstants.Setting:
+            if let item = menuOverview[indexPath.row] {
+                if let dvc = self.parentViewController?.parentViewController as? DiaryViewController {
+                    dvc.performSegueWithIdentifier(item["segue"], sender: nil)
+                }
+            }
+            break
+        case TableViewConstants.Diary:
             let diary = menuDiary[indexPath.row]
             
             if let dvc = self.parentViewController?.parentViewController as? DiaryViewController {
                 dvc.slideMenuViewController.toggleMenu()
                 dvc.diary = diary
             }
-        case ItemType.Index:break
+        case TableViewConstants.Index:break
         default:break
         }
     }
