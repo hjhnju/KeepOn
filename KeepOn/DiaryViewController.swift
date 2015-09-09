@@ -25,6 +25,7 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
     @IBOutlet weak var calWeekDayView: JTCalendarWeekDayView!
     @IBOutlet weak var calVerticalView: JTVerticalCalendarView!
     
+    @IBOutlet weak var descView: UIView!
     @IBOutlet weak var monthCountLabel: UILabel!
     @IBOutlet weak var monthTipLabel: UILabel!
     @IBOutlet weak var totalCountLabel: UILabel!
@@ -36,6 +37,20 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
         let menuViewController = UIStoryboard(name: "Menu", bundle: nil).instantiateViewControllerWithIdentifier(StoryBoardIdentifier.MenuViewControllerID) as! UIViewController
         
         slideMenuViewController = SlideMenuViewController(main: self, menu: menuViewController)
+        
+        //descview
+        descView.backgroundColor = SceneColor.crystalGray
+        
+        monthCountLabel.textColor = UIColor.orangeColor()
+        totalCountLabel.textColor = UIColor.orangeColor()
+        monthTipLabel.textColor   = UIColor.orangeColor()
+        totalTipLabel.textColor   = UIColor.orangeColor()
+        
+        monthCountLabel.font = UIFont(name: SceneFont.heiti, size: 48)
+        totalCountLabel.font = UIFont(name: SceneFont.heiti, size: 48)
+        monthTipLabel.font   = UIFont(name: SceneFont.heiti, size: 12)
+        totalTipLabel.font   = UIFont(name: SceneFont.heiti, size: 12)
+        
         
         //calendar
         calMenuView.backgroundColor     = UIColor.whiteColor()
@@ -76,14 +91,11 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
                 DiaryDAO.instance.create(diary)
             }
         }
-        
-//        let diarys = DiaryDAO.instance.findAll()
-//        DiaryDAO.instance.remove(diarys.last!)
     }
     
     //refresh diary data
     func refresh() {
-        self.title = diary.name
+        self.title = diary?.name
         self.manager.reload()
         
         let monthDate = manager.date()
@@ -91,37 +103,35 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
         formater.dateFormat = "yyyy-MM-dd"
         NSLog("refresh=\(formater.stringFromDate(monthDate))")
         
-        refreshMonth()
-        refreshTotal()
+        refreshMonthLabel()
+        refreshTotalLabel()
     }
     
-    func refreshMonth(){
+    func refreshMonthLabel(){
         let monthDate = calVerticalView.date
-        self.monthCountLabel.text = "\(diary.finishedDaysInMonth(monthDate))"
-        self.monthTipLabel.text = getMonthTip(monthDate)
+        let count = diary?.finishedDaysInMonth(monthDate) ?? 0
+        self.monthCountLabel.text = "\(count)"
+        
+        let formater = NSDateFormatter()
+        formater.dateFormat = "yyyy/MM"
+        let monthTip = "\(formater.stringFromDate(monthDate))当月达成天数"
+        self.monthTipLabel.text = monthTip
     }
     
-    func refreshTotal(){
-        self.totalTipLabel.text = getTotalTip()
-        self.totalCountLabel.text = "\(diary.finishedDays())"
+    func refreshTotalLabel(){
+        let count = diary?.finishedDays() ?? 0
+        self.totalCountLabel.text = "\(count)"
+        
+        if let earlestDate = diary?.earlestDate() {
+            let formater = NSDateFormatter()
+            formater.dateFormat = "yyyy/MM/dd"
+            let earlestDay = formater.stringFromDate(earlestDate)
+            self.totalTipLabel.text = "\(earlestDay)起累计天数"
+        }
     }
     
     @IBAction func toggleMenu(sender: UIBarButtonItem) {
         slideMenuViewController.toggleMenu()
-    }
-    
-    private func getMonthTip(month: NSDate) -> String {
-        let formater = NSDateFormatter()
-        formater.dateFormat = "yyyy/MM"
-        let monthTip = "\(formater.stringFromDate(month))当月达成天数"
-        return monthTip
-    }
-    
-    private func getTotalTip() -> String {
-        let formater = NSDateFormatter()
-        formater.dateFormat = "yyyy/MM/dd"
-        let totalTip = "\(formater.stringFromDate(diary!.startDate))起累计天数"
-        return totalTip
     }
     
     //MARK: JTCalendarDelegate
@@ -196,8 +206,8 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
             }, completion: nil)
         }
         
-        refreshMonth()
-        refreshTotal()
+        refreshMonthLabel()
+        refreshTotalLabel()
     }
     
     func calendarBuildDayView(calendar: JTCalendarManager!) -> UIView! {
@@ -207,11 +217,11 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
     }
     
     func calendarDidLoadNextPage(calendar: JTCalendarManager!) {
-        refreshMonth()
+        refreshMonthLabel()
     }
     
     func calendarDidLoadPreviousPage(calendar: JTCalendarManager!) {
-        refreshMonth()
+        refreshMonthLabel()
     }
     
     // MARK: Segues

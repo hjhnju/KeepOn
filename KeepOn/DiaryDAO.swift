@@ -75,7 +75,6 @@ class DiaryDAO: CoreDataDAO {
         let diary = NSEntityDescription.insertNewObjectForEntityForName("Diary", inManagedObjectContext: ctx) as! NSManagedObject
         diary.setValue(model.id, forKey: "id")
         diary.setValue(model.name, forKey: "name")
-        diary.setValue(model.startDate, forKey: "startDate")
         diary.setValue(model.color, forKey: "color")
         
         var error: NSError? = nil
@@ -142,11 +141,9 @@ class DiaryDAO: CoreDataDAO {
     private func createFromMO(mo: NSManagedObject) -> Diary {
         var id        = mo.valueForKey("id") as! Int
         var name      = mo.valueForKey("name") as! String
-        var startDate = mo.valueForKey("startDate") as! NSDate
         var color     = mo.valueForKey("color") as! UIColor
         
         let diary       = Diary(id: id, name: name)
-        diary.startDate = startDate
         diary.color     = color
         
         return diary
@@ -155,7 +152,6 @@ class DiaryDAO: CoreDataDAO {
     //从MangedObject获得Diary
     private func updateFromModel(mo: NSManagedObject, model: Diary) {
         mo.setValue(model.name, forKey:"name")
-        mo.setValue(model.startDate, forKey:"startDate")
         mo.setValue(model.color, forKey:"color")
         
         return

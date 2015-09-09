@@ -37,16 +37,7 @@ struct StoryBoardIdentifier {
 }
 
 struct SceneColor {
-    static let lightYellow = UIColor(hex: 0xF3FD54, alpha: 1)
-    static let yellow      = UIColor.yellowColor()
-    
-    static let black       = UIColor.blackColor()
-    static let lightBlack  = UIColor(hex: 0x2A2D2E, alpha:1)
-    static let gray        = UIColor(hex: 0x3E3E3E, alpha:1)
-    static let lightGray   = UIColor(hex: 0x9C9C9C, alpha:1)
-    static let crystalGray = UIColor(hex: 0x9C9C9C, alpha:0.3)
-    
-    static let white        = UIColor.whiteColor()
+    static let crystalGray = UIColor.grayColor().colorWithAlphaComponent(0.1)
     static let crystalWhite = UIColor.whiteColor().colorWithAlphaComponent(0.8)
 }
 

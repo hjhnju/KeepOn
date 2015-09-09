@@ -112,6 +112,7 @@
                         <outlet property="calMenuView" destination="ZXo-Ae-SVU" id="qXE-ca-rej"/>
                         <outlet property="calVerticalView" destination="9Pv-dK-xNG" id="sG7-hs-fNZ"/>
                         <outlet property="calWeekDayView" destination="xZw-aQ-4JJ" id="ChI-oy-W8U"/>
+                        <outlet property="descView" destination="PvE-Nt-N7C" id="J26-Am-5Rd"/>
                         <outlet property="monthCountLabel" destination="Rh4-5p-4Tw" id="bcE-Im-h87"/>
                         <outlet property="monthTipLabel" destination="wJB-WN-OiX" id="UDK-SA-Fys"/>
                         <outlet property="totalCountLabel" destination="OPU-Jz-fDY" id="Yxw-NM-LnP"/>
