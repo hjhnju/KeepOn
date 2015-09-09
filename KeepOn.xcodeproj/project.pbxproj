@@ -35,10 +35,20 @@
 		72A6C3041B9EA99200BEE2B5 /* DiaryPlistDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C3031B9EA99200BEE2B5 /* DiaryPlistDAO.swift */; };
 		72A6C3061B9EBE9C00BEE2B5 /* Diary.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72A6C3051B9EBE9C00BEE2B5 /* Diary.plist */; };
 		72A6C3091B9EFCD500BEE2B5 /* KeepOn.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C3071B9EFCD500BEE2B5 /* KeepOn.xcdatamodeld */; };
-		72A6C30D1B9EFFFB00BEE2B5 /* DiaryMapMangedObejct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C30C1B9EFFFB00BEE2B5 /* DiaryMapMangedObejct.swift */; };
+		72A6C30D1B9EFFFB00BEE2B5 /* DiaryMapManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C30C1B9EFFFB00BEE2B5 /* DiaryMapManagedObject.swift */; };
 		72A6C30F1B9F004D00BEE2B5 /* DiaryMapDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C30E1B9F004D00BEE2B5 /* DiaryMapDAO.swift */; };
 		72A6C3171B9F07E300BEE2B5 /* DiaryManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C3161B9F07E300BEE2B5 /* DiaryManagedObject.swift */; };
 		72A6C31C1B9FE24A00BEE2B5 /* DiaryMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C31B1B9FE24A00BEE2B5 /* DiaryMap.swift */; };
+		72A6C31F1BA0316F00BEE2B5 /* Variable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72A6C31E1BA0316F00BEE2B5 /* Variable.storyboard */; };
+		72A6C3211BA0319500BEE2B5 /* VariableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C3201BA0319500BEE2B5 /* VariableViewController.swift */; };
+		72A6C3231BA031AF00BEE2B5 /* AddVarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C3221BA031AF00BEE2B5 /* AddVarViewController.swift */; };
+		72A6C3251BA031DF00BEE2B5 /* AddVarItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C3241BA031DF00BEE2B5 /* AddVarItemViewController.swift */; };
+		72A6C3281BA0322500BEE2B5 /* Variable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C3271BA0322500BEE2B5 /* Variable.swift */; };
+		72A6C32A1BA03ABF00BEE2B5 /* VariableManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C3291BA03ABF00BEE2B5 /* VariableManagedObject.swift */; };
+		72A6C32C1BA03AC000BEE2B5 /* VariableValuesManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C32B1BA03AC000BEE2B5 /* VariableValuesManagedObject.swift */; };
+		72A6C32E1BA03AE000BEE2B5 /* VariableDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C32D1BA03AE000BEE2B5 /* VariableDAO.swift */; };
+		72A6C3301BA03BE700BEE2B5 /* VariableValuesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C32F1BA03BE700BEE2B5 /* VariableValuesDAO.swift */; };
+		72A6C3321BA045BC00BEE2B5 /* PlistDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C3311BA045BC00BEE2B5 /* PlistDAO.swift */; };
 		D13B3A1538038F8A7CEDB3A4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE0BB55791695E372B010AA4 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -88,10 +98,20 @@
 		72A6C3031B9EA99200BEE2B5 /* DiaryPlistDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryPlistDAO.swift; sourceTree = "<group>"; };
 		72A6C3051B9EBE9C00BEE2B5 /* Diary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Diary.plist; sourceTree = "<group>"; };
 		72A6C3081B9EFCD500BEE2B5 /* KeepOn.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KeepOn.xcdatamodel; sourceTree = "<group>"; };
-		72A6C30C1B9EFFFB00BEE2B5 /* DiaryMapMangedObejct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryMapMangedObejct.swift; sourceTree = "<group>"; };
+		72A6C30C1B9EFFFB00BEE2B5 /* DiaryMapManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryMapManagedObject.swift; sourceTree = "<group>"; };
 		72A6C30E1B9F004D00BEE2B5 /* DiaryMapDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryMapDAO.swift; sourceTree = "<group>"; };
 		72A6C3161B9F07E300BEE2B5 /* DiaryManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryManagedObject.swift; sourceTree = "<group>"; };
 		72A6C31B1B9FE24A00BEE2B5 /* DiaryMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryMap.swift; sourceTree = "<group>"; };
+		72A6C31E1BA0316F00BEE2B5 /* Variable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Variable.storyboard; sourceTree = "<group>"; };
+		72A6C3201BA0319500BEE2B5 /* VariableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariableViewController.swift; sourceTree = "<group>"; };
+		72A6C3221BA031AF00BEE2B5 /* AddVarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVarViewController.swift; sourceTree = "<group>"; };
+		72A6C3241BA031DF00BEE2B5 /* AddVarItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVarItemViewController.swift; sourceTree = "<group>"; };
+		72A6C3271BA0322500BEE2B5 /* Variable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variable.swift; sourceTree = "<group>"; };
+		72A6C3291BA03ABF00BEE2B5 /* VariableManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariableManagedObject.swift; sourceTree = "<group>"; };
+		72A6C32B1BA03AC000BEE2B5 /* VariableValuesManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariableValuesManagedObject.swift; sourceTree = "<group>"; };
+		72A6C32D1BA03AE000BEE2B5 /* VariableDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariableDAO.swift; sourceTree = "<group>"; };
+		72A6C32F1BA03BE700BEE2B5 /* VariableValuesDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariableValuesDAO.swift; sourceTree = "<group>"; };
+		72A6C3311BA045BC00BEE2B5 /* PlistDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlistDAO.swift; sourceTree = "<group>"; };
 		AE0BB55791695E372B010AA4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -138,6 +158,7 @@
 		724F66761B929F0A004A6805 /* KeepOn */ = {
 			isa = PBXGroup;
 			children = (
+				72A6C31D1BA0314A00BEE2B5 /* Variable */,
 				724F66B51B955EF9004A6805 /* AppIniAndConstants.swift */,
 				724F66A31B92C85F004A6805 /* Menu */,
 				724F66C41B95B6AB004A6805 /* Diary */,
@@ -201,6 +222,7 @@
 				724F66BB1B95A100004A6805 /* StringExtentions.swift */,
 				724F66BC1B95A100004A6805 /* UIColorExtentions.swift */,
 				724F67071B9BF70A004A6805 /* NSDateExtention.swift */,
+				72A6C3311BA045BC00BEE2B5 /* PlistDAO.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -226,7 +248,31 @@
 				72A6C3031B9EA99200BEE2B5 /* DiaryPlistDAO.swift */,
 				72A6C31B1B9FE24A00BEE2B5 /* DiaryMap.swift */,
 				72A6C30E1B9F004D00BEE2B5 /* DiaryMapDAO.swift */,
-				72A6C30C1B9EFFFB00BEE2B5 /* DiaryMapMangedObejct.swift */,
+				72A6C30C1B9EFFFB00BEE2B5 /* DiaryMapManagedObject.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		72A6C31D1BA0314A00BEE2B5 /* Variable */ = {
+			isa = PBXGroup;
+			children = (
+				72A6C3261BA0320300BEE2B5 /* Model */,
+				72A6C31E1BA0316F00BEE2B5 /* Variable.storyboard */,
+				72A6C3201BA0319500BEE2B5 /* VariableViewController.swift */,
+				72A6C3241BA031DF00BEE2B5 /* AddVarItemViewController.swift */,
+				72A6C3221BA031AF00BEE2B5 /* AddVarViewController.swift */,
+			);
+			name = Variable;
+			sourceTree = "<group>";
+		};
+		72A6C3261BA0320300BEE2B5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				72A6C3271BA0322500BEE2B5 /* Variable.swift */,
+				72A6C32B1BA03AC000BEE2B5 /* VariableValuesManagedObject.swift */,
+				72A6C3291BA03ABF00BEE2B5 /* VariableManagedObject.swift */,
+				72A6C32D1BA03AE000BEE2B5 /* VariableDAO.swift */,
+				72A6C32F1BA03BE700BEE2B5 /* VariableValuesDAO.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -336,6 +382,7 @@
 				72A6C3061B9EBE9C00BEE2B5 /* Diary.plist in Resources */,
 				724F667F1B929F0A004A6805 /* Menu.storyboard in Resources */,
 				724F66841B929F0A004A6805 /* LaunchScreen.xib in Resources */,
+				72A6C31F1BA0316F00BEE2B5 /* Variable.storyboard in Resources */,
 				724F66811B929F0A004A6805 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,12 +449,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72A6C32C1BA03AC000BEE2B5 /* VariableValuesManagedObject.swift in Sources */,
 				72A6C30F1B9F004D00BEE2B5 /* DiaryMapDAO.swift in Sources */,
 				724F66C21B95A100004A6805 /* UIColorExtentions.swift in Sources */,
+				72A6C3281BA0322500BEE2B5 /* Variable.swift in Sources */,
 				724F670A1B9C36E6004A6805 /* EmptyCircleView.swift in Sources */,
 				72A6C2981B9D86FA00BEE2B5 /* CoreDataDAO.swift in Sources */,
-				72A6C30D1B9EFFFB00BEE2B5 /* DiaryMapMangedObejct.swift in Sources */,
+				72A6C32E1BA03AE000BEE2B5 /* VariableDAO.swift in Sources */,
+				72A6C30D1B9EFFFB00BEE2B5 /* DiaryMapManagedObject.swift in Sources */,
 				72A6C3021B9DA59100BEE2B5 /* AddDiaryViewController.swift in Sources */,
+				72A6C3321BA045BC00BEE2B5 /* PlistDAO.swift in Sources */,
 				724F66BD1B95A100004A6805 /* ImageLoader.swift in Sources */,
 				724F66A21B92C856004A6805 /* MenuTableViewController.swift in Sources */,
 				724F66A11B92C856004A6805 /* MenuViewController.swift in Sources */,
@@ -419,12 +470,17 @@
 				724F66CA1B95B88C004A6805 /* Diary.swift in Sources */,
 				724F66C11B95A100004A6805 /* StringExtentions.swift in Sources */,
 				724F66BF1B95A100004A6805 /* SwiftyJSON.swift in Sources */,
+				72A6C3231BA031AF00BEE2B5 /* AddVarViewController.swift in Sources */,
 				724F67081B9BF70A004A6805 /* NSDateExtention.swift in Sources */,
+				72A6C3211BA0319500BEE2B5 /* VariableViewController.swift in Sources */,
+				72A6C3301BA03BE700BEE2B5 /* VariableValuesDAO.swift in Sources */,
 				724F66C81B95B7B1004A6805 /* DiaryViewController.swift in Sources */,
 				724F66C01B95A100004A6805 /* UILabelExtentions.swift in Sources */,
 				72A6C31C1B9FE24A00BEE2B5 /* DiaryMap.swift in Sources */,
 				724F669E1B92C856004A6805 /* SlideMenuViewController.swift in Sources */,
 				72A6C3091B9EFCD500BEE2B5 /* KeepOn.xcdatamodeld in Sources */,
+				72A6C32A1BA03ABF00BEE2B5 /* VariableManagedObject.swift in Sources */,
+				72A6C3251BA031DF00BEE2B5 /* AddVarItemViewController.swift in Sources */,
 				724F667A1B929F0A004A6805 /* AppDelegate.swift in Sources */,
 				724F670C1B9C4441004A6805 /* DiaryDayView.swift in Sources */,
 			);

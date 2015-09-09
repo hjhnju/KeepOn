@@ -9,8 +9,8 @@
 import Foundation
 import CoreData
 
-@objc(DiaryMapMangedObejct)
-class DiaryMapMangedObejct: NSManagedObject {
+@objc(DiaryMapManagedObject)
+class DiaryMapManagedObject: NSManagedObject {
 
     @NSManaged var diaryId: NSNumber
     @NSManaged var finishDay: NSDate

@@ -32,9 +32,7 @@ class MenuTableViewController: UITableViewController {
         }
     }
     
-    var menuIndex:[Int: Dictionary<String, String>] = [
-        0:["text":"体重", "icon":"menu-feedback"],
-        ] {
+    var menuIndex = [Variable]() {
         didSet {
             tableView.reloadData()
         }
@@ -56,6 +54,15 @@ class MenuTableViewController: UITableViewController {
     
     override func viewDidAppear(animated: Bool) {
         menuDiary = DiaryDAO.instance.findAll()
+        menuIndex = VariableDAO.instance.findAll()
+        if menuIndex.count == 0 {
+            //为空则默认创建一个
+            let id = PlistDAO.instance.getAutoIncreasedMaxId()
+            let index = Variable(id: id, name: "MyIndex One")
+            VariableDAO.instance.create(index)
+            
+            menuIndex = VariableDAO.instance.findAll()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -112,8 +119,9 @@ class MenuTableViewController: UITableViewController {
             //cell.imageView?.tintColor = diary.color
             break
         case TableViewConstants.Index:
-            cell.textLabel?.text = menuIndex[indexPath.row]!["text"]!
-            cell.imageView?.image = UIImage(named: menuIndex[indexPath.row]!["icon"]!)
+            let index = menuIndex[indexPath.row]
+            cell.textLabel?.text = index.name
+            cell.imageView?.image = UIImage(named: index.icon)
             break
         default:break
         }

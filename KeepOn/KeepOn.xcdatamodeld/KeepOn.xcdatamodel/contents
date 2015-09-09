@@ -5,13 +5,25 @@
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="DiaryMap" representedClassName="DiaryMapMangedObejct" syncable="YES">
+    <entity name="DiaryMap" representedClassName="DiaryMapManagedObject" syncable="YES">
         <attribute name="diaryId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="finishDay" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="optTime" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
+    <entity name="Variable" representedClassName="VariableManagedObject" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="VariableValues" representedClassName="VariableValuesManagedObject" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="varId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Diary" positionX="-54" positionY="-9" width="128" height="90"/>
         <element name="DiaryMap" positionX="-36" positionY="36" width="128" height="90"/>
+        <element name="Variable" positionX="-9" positionY="72" width="128" height="90"/>
+        <element name="VariableValues" positionX="18" positionY="99" width="128" height="90"/>
     </elements>
 </model>

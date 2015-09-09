@@ -1,37 +1,38 @@
 //
-//  DiaryMap.swift
+//  VariableValuesDAO.swift
 //  KeepOn
 //
-//  Created by 何俊华 on 15/9/8.
+//  Created by 何俊华 on 15/9/9.
 //  Copyright (c) 2015年 Joshua. All rights reserved.
 //
+
 
 import Foundation
 import CoreData
 import UIKit
 
-class DiaryMapDAO: CoreDataDAO {
+class VariableValuesDAO: CoreDataDAO {
     
-    class var instance: DiaryMapDAO {
+    class var instance: VariableValuesDAO {
         struct Static {
-            static var instance: DiaryMapDAO?
+            static var instance: VariableValuesDAO?
             static var token: dispatch_once_t = 0
         }
         
         dispatch_once(&Static.token) {
-            Static.instance = DiaryMapDAO()
+            Static.instance = VariableValuesDAO()
         }
         return Static.instance!
     }
     
-    func insertRow(diaryId: Int, finishDay: NSDate, optTime: NSDate) -> Int {
+    func insertRow(varId: Int, date: NSDate, value: NSDate) -> Int {
         
         var ctx = self.managedObjectContext!
         
-        let diaryMap = NSEntityDescription.insertNewObjectForEntityForName("DiaryMap", inManagedObjectContext: ctx) as! NSManagedObject
-        diaryMap.setValue(diaryId, forKey: "diaryId")
-        diaryMap.setValue(finishDay, forKey: "finishDay")
-        diaryMap.setValue(optTime, forKey: "optTime")
+        let diaryMap = NSEntityDescription.insertNewObjectForEntityForName("VariableValues", inManagedObjectContext: ctx) as! NSManagedObject
+        diaryMap.setValue(varId, forKey: "varId")
+        diaryMap.setValue(date, forKey: "date")
+        diaryMap.setValue(value, forKey: "value")
         
         var error: NSError? = nil
         if ctx.hasChanges && !ctx.save(&error) {
@@ -41,14 +42,14 @@ class DiaryMapDAO: CoreDataDAO {
         return 1
     }
     
-    func removeRow(diaryId: Int, finishDay: NSDate) -> Int{
+    func removeRow(varId: Int, date: NSDate) -> Int{
         var ctx = self.managedObjectContext!
         
-        let entity = NSEntityDescription.entityForName("DiaryMap", inManagedObjectContext: ctx)
+        let entity = NSEntityDescription.entityForName("VariableValues", inManagedObjectContext: ctx)
         
         let fetchRequest       = NSFetchRequest()
         fetchRequest.entity    = entity
-        fetchRequest.predicate = NSPredicate(format: "diaryId = %i and finishDay = %@", diaryId, finishDay)
+        fetchRequest.predicate = NSPredicate(format: "varId = %i and date = %@", varId, date)
         
         var error: NSError? = nil
         if let listData = ctx.executeFetchRequest(fetchRequest, error: &error) {
@@ -67,34 +68,30 @@ class DiaryMapDAO: CoreDataDAO {
         return 0
     }
     
-    func findAll() -> DiaryMap {
+    func findAll() -> [NSDate: Float] {
         
         var ctx = self.managedObjectContext!
         
-        let entity = NSEntityDescription.entityForName("DiaryMap", inManagedObjectContext: ctx)
+        let entity = NSEntityDescription.entityForName("VariableValues", inManagedObjectContext: ctx)
         
         let fetchRequest = NSFetchRequest()
         fetchRequest.entity = entity
         
-        var sortDescriptor = NSSortDescriptor(key: "finishDay", ascending: true)
+        var sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         var sortDescriptors = NSArray(objects: sortDescriptor)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         var error: NSError? = nil
-        var retlistData = [NSDate: [Int:NSDate]]()
+        var retlistData = [NSDate: Float]()
         var listData = ctx.executeFetchRequest(fetchRequest, error: &error)
         if let list = listData {
             for item in list {
-                let mo = item as! DiaryMapManagedObject
-                if retlistData[mo.finishDay] == nil {
-                    retlistData[mo.finishDay] = [Int:NSDate]()
-                }
-                retlistData[mo.finishDay]![mo.diaryId as! Int] = mo.optTime
+                let mo = item as! VariableValuesManagedObject
+                retlistData[mo.date] = mo.value as? Float
             }
         }
         
-        let diaryMap = DiaryMap(finishDays: retlistData)
-        return diaryMap
+        return retlistData
     }
-
+    
 }
