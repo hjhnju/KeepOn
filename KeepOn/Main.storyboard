@@ -117,7 +117,6 @@
                         <outlet property="monthTipLabel" destination="wJB-WN-OiX" id="UDK-SA-Fys"/>
                         <outlet property="totalCountLabel" destination="OPU-Jz-fDY" id="Yxw-NM-LnP"/>
                         <outlet property="totalTipLabel" destination="OdE-T0-NGY" id="fz4-rM-3wF"/>
-                        <segue destination="JAm-Ie-dKf" kind="show" identifier="ShowAddDiarySegue" id="1Gp-pI-csu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MBh-VZ-Lpa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -181,22 +180,12 @@
                                     <constraint firstAttribute="height" constant="40" id="3k3-OT-RqA"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qDR-Ls-fgb" userLabel="saveButton">
-                                <rect key="frame" x="16" y="278" width="568" height="36"/>
-                                <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="现在开始吧"/>
-                                <connections>
-                                    <segue destination="KsH-IN-Tf4" kind="unwind" identifier="UnwindSaveSegue" unwindAction="unwindToSave:" id="Lto-jP-qLE"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ISd-48-G3Q" firstAttribute="top" secondItem="Kkf-Jk-DAC" secondAttribute="bottom" constant="20" id="3NO-Av-TBC"/>
                             <constraint firstItem="FnW-4l-WHS" firstAttribute="top" secondItem="TGY-hj-3DT" secondAttribute="bottom" constant="398" id="9hu-0x-ZKg"/>
                             <constraint firstItem="TGY-hj-3DT" firstAttribute="top" secondItem="V0b-j6-dJS" secondAttribute="bottom" constant="10" id="Gdu-gS-BOO"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qDR-Ls-fgb" secondAttribute="trailing" id="ITZ-GC-biA"/>
                             <constraint firstItem="Akv-DL-6TB" firstAttribute="top" secondItem="ISd-48-G3Q" secondAttribute="bottom" constant="10" id="OWn-cB-MnN"/>
                             <constraint firstItem="Akv-DL-6TB" firstAttribute="trailing" secondItem="ISd-48-G3Q" secondAttribute="trailing" id="ZNE-CH-UyQ"/>
                             <constraint firstItem="TGY-hj-3DT" firstAttribute="leading" secondItem="V0b-j6-dJS" secondAttribute="leading" id="aaQ-bi-hSQ"/>
@@ -207,8 +196,6 @@
                             <constraint firstItem="V0b-j6-dJS" firstAttribute="top" secondItem="Akv-DL-6TB" secondAttribute="bottom" constant="10" id="o8u-eW-Yc3"/>
                             <constraint firstItem="FnW-4l-WHS" firstAttribute="top" secondItem="ISd-48-G3Q" secondAttribute="bottom" constant="485" id="qfY-pB-SFZ"/>
                             <constraint firstItem="Akv-DL-6TB" firstAttribute="leading" secondItem="ISd-48-G3Q" secondAttribute="leading" id="s5U-87-eOG"/>
-                            <constraint firstItem="qDR-Ls-fgb" firstAttribute="top" secondItem="TGY-hj-3DT" secondAttribute="bottom" constant="50" id="tcY-bL-3Xk"/>
-                            <constraint firstItem="qDR-Ls-fgb" firstAttribute="leading" secondItem="LW0-Xv-W1k" secondAttribute="leadingMargin" id="y9y-Hv-Q1e"/>
                             <constraint firstItem="ISd-48-G3Q" firstAttribute="trailing" secondItem="LW0-Xv-W1k" secondAttribute="trailingMargin" id="z7g-FT-MbI"/>
                         </constraints>
                         <variation key="default">
@@ -218,37 +205,45 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="KNF-5X-09Q"/>
+                    <navigationItem key="navigationItem" id="KNF-5X-09Q">
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="3T7-4M-hQp">
+                            <connections>
+                                <action selector="cancelAction:" destination="DW0-lO-pEV" id="91X-Xe-66g"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="2ar-aS-4K9">
+                            <connections>
+                                <action selector="saveAction:" destination="DW0-lO-pEV" id="gme-kl-azr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="colorPickLabel" destination="V0b-j6-dJS" id="nDJ-hJ-7a8"/>
                         <outlet property="colorPickView" destination="TGY-hj-3DT" id="g9d-Fx-vCb"/>
                         <outlet property="diaryNameField" destination="Akv-DL-6TB" id="kdj-el-2fv"/>
                         <outlet property="diaryNameLabel" destination="ISd-48-G3Q" id="9wL-qC-aQw"/>
-                        <outlet property="saveButton" destination="qDR-Ls-fgb" id="QgO-pk-OQ3"/>
+                        <outlet property="saveButton" destination="2ar-aS-4K9" id="1BK-oP-krJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PIH-lO-791" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="KsH-IN-Tf4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2498" y="184"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="s9h-VX-D4M">
+        <scene sceneID="9Yg-9f-olL">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JAm-Ie-dKf" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j1b-8k-Bg0">
+                <navigationController storyboardIdentifier="AddDiaryNavViewControllerID" id="Ruf-YR-9GP" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pEr-pl-6FF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="DW0-lO-pEV" kind="relationship" relationship="rootViewController" id="n0f-ms-84i"/>
+                        <segue destination="DW0-lO-pEV" kind="relationship" relationship="rootViewController" id="O2K-nm-Vd5"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qbK-Tv-ZjU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0I2-St-8ZT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1715" y="184"/>
+            <point key="canvasLocation" x="1794" y="184"/>
         </scene>
     </scenes>
 </document>

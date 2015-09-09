@@ -73,6 +73,10 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
         
         calMenuView.scrollView.scrollEnabled = false
         
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+    
         if diary == nil {
             //优先所见的最后视图
             if let id = DiaryPlistDAO.instance.getLastViewDiaryId() {
@@ -90,6 +94,8 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
                 diary = Diary(id: id, name: "KeepOn Diary")
                 DiaryDAO.instance.create(diary)
             }
+        } else {
+            diary = DiaryDAO.instance.findById(diary.id)
         }
     }
     
@@ -227,11 +233,13 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
     // MARK: Segues
     
     @IBAction func editDiary(sender: UIBarButtonItem) {
-        performSegueWithIdentifier(StoryBoardIdentifier.ShowAddDiarySegue, sender: self.diary)
+        //performSegueWithIdentifier(StoryBoardIdentifier.ShowAddDiarySegue, sender: self.diary)
         
-        //let addDiaryViewController = AddDiaryViewController()
-        //addDiaryViewController.diary = self.diary
-        //self.navigationController?.pushViewController(addDiaryViewController, animated: true)
+        let nav = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(StoryBoardIdentifier.AddDiaryNavViewControllerID) as! UINavigationController
+        if let addDiaryViewController = nav.visibleViewController as? AddDiaryViewController {
+            addDiaryViewController.diary = self.diary
+        }
+        self.presentViewController(nav, animated: true, completion: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -240,16 +248,6 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
             avc.diary = sender as? Diary
         }
     }
-    
-    @IBAction func unwindToSave(segue: UIStoryboardSegue) {
-        if let addDiaryViewController = segue.sourceViewController as? AddDiaryViewController {
-            if let refreshDiary = addDiaryViewController.diary {
-                self.diary = refreshDiary
-            }
-        }
-    }
-    
-    
 
 }
 

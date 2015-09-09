@@ -164,22 +164,34 @@ class MenuTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.tableView!.deselectRowAtIndexPath(indexPath, animated: true)
         
+        let diaryViewController = self.parentViewController?.parentViewController as? DiaryViewController
+        
         switch indexPath.section {
         case TableViewConstants.Setting:
             if let item = menuOverview[indexPath.row] {
-                if let dvc = self.parentViewController?.parentViewController as? DiaryViewController {
-                    dvc.performSegueWithIdentifier(item["segue"], sender: nil)
+                if let dvc = diaryViewController {
+                    //dvc.performSegueWithIdentifier(item["segue"], sender: nil)
+                    dvc.slideMenuViewController.toggleMenu()
+                    let nav = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(StoryBoardIdentifier.AddDiaryNavViewControllerID) as! UINavigationController
+                    self.presentViewController(nav, animated: true, completion: nil)
                 }
             }
             break
         case TableViewConstants.Diary:
             let diary = menuDiary[indexPath.row]
             
-            if let dvc = self.parentViewController?.parentViewController as? DiaryViewController {
+            if let dvc = diaryViewController {
                 dvc.slideMenuViewController.toggleMenu()
                 dvc.diary = diary
             }
-        case TableViewConstants.Index:break
+        case TableViewConstants.Index:
+            let index = menuIndex[indexPath.row]
+            
+            if let dvc = diaryViewController {
+                dvc.slideMenuViewController.toggleMenu()
+                
+            }
+            break
         default:break
         }
     }

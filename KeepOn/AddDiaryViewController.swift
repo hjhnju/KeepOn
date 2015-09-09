@@ -39,21 +39,20 @@ class AddDiaryViewController: UIViewController {
     
     @IBOutlet weak var colorPickLabel: UILabel!
     @IBOutlet weak var colorPickView: UIView!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         colorPickView.backgroundColor = UIColor.clearColor()
-        saveButton.layer.cornerRadius = 3
         
         if diary != nil {
             self.title = "编辑日历"
             self.name = diary?.name
-            self.saveButton.setTitle("保存", forState: UIControlState.Normal)
+            self.saveButton.title = "保存"
         } else {
             self.title = "新建日历"
-            self.saveButton.setTitle("现在开始吧", forState: UIControlState.Normal)
+            self.saveButton.title = "现在开始吧"
         }
 
         // Do any additional setup after loading the view.
@@ -64,10 +63,14 @@ class AddDiaryViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == StoryBoardIdentifier.UnwindSaveSegue {
-            save()
-        }
+    @IBAction func cancelAction(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func saveAction(sender: UIBarButtonItem) {
+        self.save()
+        //传值回上一层view
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     private func save() {

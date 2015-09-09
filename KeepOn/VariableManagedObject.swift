@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+@objc(VariableManagedObject)
 class VariableManagedObject: NSManagedObject {
 
     @NSManaged var id: NSNumber
