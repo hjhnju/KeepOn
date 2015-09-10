@@ -164,12 +164,12 @@ class MenuTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.tableView!.deselectRowAtIndexPath(indexPath, animated: true)
         
-        let diaryViewController = self.parentViewController?.parentViewController as? DiaryViewController
+        let mainViewController = self.parentViewController?.parentViewController as? MainViewController
         
         switch indexPath.section {
         case TableViewConstants.Setting:
             if let item = menuOverview[indexPath.row] {
-                if let dvc = diaryViewController {
+                if let dvc = mainViewController {
                     //dvc.performSegueWithIdentifier(item["segue"], sender: nil)
                     dvc.slideMenuViewController.toggleMenu()
                     let nav = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(StoryBoardIdentifier.AddDiaryNavViewControllerID) as! UINavigationController
@@ -180,16 +180,20 @@ class MenuTableViewController: UITableViewController {
         case TableViewConstants.Diary:
             let diary = menuDiary[indexPath.row]
             
-            if let dvc = diaryViewController {
-                dvc.slideMenuViewController.toggleMenu()
-                dvc.diary = diary
+            if let mvc = mainViewController {
+                let diaryViewController = UIStoryboard(name: "Diary", bundle: nil).instantiateViewControllerWithIdentifier(StoryBoardIdentifier.DiaryViewControllerID) as! DiaryViewController
+                mvc.mainSubviewController = diaryViewController
+                mvc.slideMenuViewController.toggleMenu()
+                diaryViewController.diary = diary
             }
         case TableViewConstants.Index:
             let index = menuIndex[indexPath.row]
             
-            if let dvc = diaryViewController {
-                dvc.slideMenuViewController.toggleMenu()
-                
+            if let mvc = mainViewController {
+                let variableViewController = UIStoryboard(name: "Variable", bundle: nil).instantiateViewControllerWithIdentifier(StoryBoardIdentifier.VariableViewControllerID) as! VariableViewController
+                mvc.mainSubviewController = variableViewController
+                mvc.slideMenuViewController.toggleMenu()
+                variableViewController.variable = index
             }
             break
         default:break

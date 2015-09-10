@@ -22,7 +22,7 @@
 		724F66C01B95A100004A6805 /* UILabelExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724F66BA1B95A100004A6805 /* UILabelExtentions.swift */; };
 		724F66C11B95A100004A6805 /* StringExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724F66BB1B95A100004A6805 /* StringExtentions.swift */; };
 		724F66C21B95A100004A6805 /* UIColorExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724F66BC1B95A100004A6805 /* UIColorExtentions.swift */; };
-		724F66C61B95B784004A6805 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 724F66C51B95B784004A6805 /* Main.storyboard */; };
+		724F66C61B95B784004A6805 /* Diary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 724F66C51B95B784004A6805 /* Diary.storyboard */; };
 		724F66C81B95B7B1004A6805 /* DiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724F66C71B95B7B1004A6805 /* DiaryViewController.swift */; };
 		724F66CA1B95B88C004A6805 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724F66C91B95B88C004A6805 /* Diary.swift */; };
 		724F67081B9BF70A004A6805 /* NSDateExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724F67071B9BF70A004A6805 /* NSDateExtention.swift */; };
@@ -49,6 +49,8 @@
 		72A6C32E1BA03AE000BEE2B5 /* VariableDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C32D1BA03AE000BEE2B5 /* VariableDAO.swift */; };
 		72A6C3301BA03BE700BEE2B5 /* VariableValuesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C32F1BA03BE700BEE2B5 /* VariableValuesDAO.swift */; };
 		72A6C3321BA045BC00BEE2B5 /* PlistDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C3311BA045BC00BEE2B5 /* PlistDAO.swift */; };
+		72A6C3341BA11C9B00BEE2B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72A6C3331BA11C9B00BEE2B5 /* Main.storyboard */; };
+		72A6C3361BA11CC100BEE2B5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C3351BA11CC100BEE2B5 /* MainViewController.swift */; };
 		D13B3A1538038F8A7CEDB3A4 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE0BB55791695E372B010AA4 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -84,7 +86,7 @@
 		724F66BA1B95A100004A6805 /* UILabelExtentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExtentions.swift; sourceTree = "<group>"; };
 		724F66BB1B95A100004A6805 /* StringExtentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtentions.swift; sourceTree = "<group>"; };
 		724F66BC1B95A100004A6805 /* UIColorExtentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtentions.swift; sourceTree = "<group>"; };
-		724F66C51B95B784004A6805 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		724F66C51B95B784004A6805 /* Diary.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Diary.storyboard; sourceTree = "<group>"; };
 		724F66C71B95B7B1004A6805 /* DiaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryViewController.swift; sourceTree = "<group>"; };
 		724F66C91B95B88C004A6805 /* Diary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		724F67071B9BF70A004A6805 /* NSDateExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtention.swift; sourceTree = "<group>"; };
@@ -112,6 +114,8 @@
 		72A6C32D1BA03AE000BEE2B5 /* VariableDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariableDAO.swift; sourceTree = "<group>"; };
 		72A6C32F1BA03BE700BEE2B5 /* VariableValuesDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariableValuesDAO.swift; sourceTree = "<group>"; };
 		72A6C3311BA045BC00BEE2B5 /* PlistDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlistDAO.swift; sourceTree = "<group>"; };
+		72A6C3331BA11C9B00BEE2B5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		72A6C3351BA11CC100BEE2B5 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		AE0BB55791695E372B010AA4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -158,10 +162,12 @@
 		724F66761B929F0A004A6805 /* KeepOn */ = {
 			isa = PBXGroup;
 			children = (
-				72A6C31D1BA0314A00BEE2B5 /* Variable */,
 				724F66B51B955EF9004A6805 /* AppIniAndConstants.swift */,
+				72A6C3331BA11C9B00BEE2B5 /* Main.storyboard */,
+				72A6C3351BA11CC100BEE2B5 /* MainViewController.swift */,
 				724F66A31B92C85F004A6805 /* Menu */,
 				724F66C41B95B6AB004A6805 /* Diary */,
+				72A6C31D1BA0314A00BEE2B5 /* Variable */,
 				724F66C31B95A103004A6805 /* Common */,
 				724F66771B929F0A004A6805 /* Supporting Files */,
 				72A6C28F1B9D851100BEE2B5 /* KeepOn-Bridging-Header.h */,
@@ -231,7 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				72A6C2901B9D86C700BEE2B5 /* Model */,
-				724F66C51B95B784004A6805 /* Main.storyboard */,
+				724F66C51B95B784004A6805 /* Diary.storyboard */,
 				724F66C71B95B7B1004A6805 /* DiaryViewController.swift */,
 				724F670B1B9C4441004A6805 /* DiaryDayView.swift */,
 				72A6C3011B9DA59100BEE2B5 /* AddDiaryViewController.swift */,
@@ -378,7 +384,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				724F66C61B95B784004A6805 /* Main.storyboard in Resources */,
+				72A6C3341BA11C9B00BEE2B5 /* Main.storyboard in Resources */,
+				724F66C61B95B784004A6805 /* Diary.storyboard in Resources */,
 				72A6C3061B9EBE9C00BEE2B5 /* Diary.plist in Resources */,
 				724F667F1B929F0A004A6805 /* Menu.storyboard in Resources */,
 				724F66841B929F0A004A6805 /* LaunchScreen.xib in Resources */,
@@ -463,6 +470,7 @@
 				724F66A21B92C856004A6805 /* MenuTableViewController.swift in Sources */,
 				724F66A11B92C856004A6805 /* MenuViewController.swift in Sources */,
 				724F66B61B955EF9004A6805 /* AppIniAndConstants.swift in Sources */,
+				72A6C3361BA11CC100BEE2B5 /* MainViewController.swift in Sources */,
 				72A6C3171B9F07E300BEE2B5 /* DiaryManagedObject.swift in Sources */,
 				724F66BE1B95A100004A6805 /* HttpRequest.swift in Sources */,
 				72A6C2941B9D86DE00BEE2B5 /* DiaryDAO.swift in Sources */,

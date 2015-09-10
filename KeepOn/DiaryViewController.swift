@@ -11,13 +11,7 @@ import JTCalendar
 
 class DiaryViewController: UIViewController, JTCalendarDelegate{
     
-    var diary: Diary! {
-        didSet {
-            refresh()
-        }
-    }
-    
-    var slideMenuViewController: SlideMenuViewController!
+    var diary: Diary!
     
     var manager: JTCalendarManager!
     
@@ -33,10 +27,6 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
     
     override func viewDidLoad() {
         view.backgroundColor = UIColor.whiteColor()
-        
-        let menuViewController = UIStoryboard(name: "Menu", bundle: nil).instantiateViewControllerWithIdentifier(StoryBoardIdentifier.MenuViewControllerID) as! UIViewController
-        
-        slideMenuViewController = SlideMenuViewController(main: self, menu: menuViewController)
         
         //descview
         descView.backgroundColor = SceneColor.crystalGray
@@ -91,17 +81,21 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
             //还为空则默认创建一个
             if diary == nil {
                 let id = DiaryPlistDAO.instance.getAvailableMaxDiaryId()
-                diary = Diary(id: id, name: "KeepOn Diary")
+                diary = Diary(id: id, name: "KeepOn Diary One")
                 DiaryDAO.instance.create(diary)
             }
         } else {
             diary = DiaryDAO.instance.findById(diary.id)
         }
+        
+        refresh()
     }
     
     //refresh diary data
     func refresh() {
         self.title = diary?.name
+        self.parentViewController?.title = diary?.name
+        
         self.manager.reload()
         
         let monthDate = manager.date()
@@ -137,7 +131,7 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
     }
     
     @IBAction func toggleMenu(sender: UIBarButtonItem) {
-        slideMenuViewController.toggleMenu()
+        //slideMenuViewController.toggleMenu()
     }
     
     //MARK: JTCalendarDelegate
@@ -232,21 +226,13 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
     
     // MARK: Segues
     
-    @IBAction func editDiary(sender: UIBarButtonItem) {
-        //performSegueWithIdentifier(StoryBoardIdentifier.ShowAddDiarySegue, sender: self.diary)
+    func edit(sender: UIBarButtonItem) {
         
-        let nav = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(StoryBoardIdentifier.AddDiaryNavViewControllerID) as! UINavigationController
+        let nav = UIStoryboard(name: "Diary", bundle: nil).instantiateViewControllerWithIdentifier(StoryBoardIdentifier.AddDiaryNavViewControllerID) as! UINavigationController
         if let addDiaryViewController = nav.visibleViewController as? AddDiaryViewController {
             addDiaryViewController.diary = self.diary
         }
         self.presentViewController(nav, animated: true, completion: nil)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == StoryBoardIdentifier.ShowAddDiarySegue {
-            let avc = segue.destinationViewController.visibleViewController as! AddDiaryViewController
-            avc.diary = sender as? Diary
-        }
     }
 
 }

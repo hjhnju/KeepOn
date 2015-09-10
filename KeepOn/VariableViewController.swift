@@ -11,7 +11,7 @@ import ANDLineChartView
 
 class VariableViewController: UIViewController {
 
-    var slideMenuViewController: SlideMenuViewController!
+    var variable: Variable!
     
     @IBOutlet weak var chartView: ANDLineChartView!
     
@@ -19,10 +19,24 @@ class VariableViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.whiteColor()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        refresh()
+    }
+    
+    func refresh(){
+        self.parentViewController?.title = variable.name
+    }
+    
+    
+    func edit(sender: UIBarButtonItem){
         
-        let menuViewController = UIStoryboard(name: "Menu", bundle: nil).instantiateViewControllerWithIdentifier(StoryBoardIdentifier.MenuViewControllerID) as! UIViewController
-        
-        slideMenuViewController = SlideMenuViewController(main: self, menu: menuViewController)
+        let nav = UIStoryboard(name: "Variable", bundle: nil).instantiateViewControllerWithIdentifier(StoryBoardIdentifier.VariableViewControllerID) as! UINavigationController
+        if let addVarViewController = nav.visibleViewController as? AddVarViewController {
+            addVarViewController.variable = self.variable
+        }
+        self.presentViewController(nav, animated: true, completion: nil)
     }
 
 }

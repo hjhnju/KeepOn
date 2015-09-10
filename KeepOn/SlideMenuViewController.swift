@@ -83,8 +83,6 @@ class SlideMenuViewController: UIViewController {
     }
     
     func updateMenuViewController() {
-        //限制宽度
-        self.menuViewController.view.frame = CGRect(x: -SlideMenuOptions.DrawerWidth, y: 0, width: SlideMenuOptions.DrawerWidth, height: SlideMenuOptions.DrawerHeight)
         
         self.menuViewController.view.addGestureRecognizer(panGestureRecognizer)
         
@@ -93,6 +91,9 @@ class SlideMenuViewController: UIViewController {
             self.mainViewController.view.addSubview(menuViewController.view)
             self.mainViewController.view.bringSubviewToFront(menuViewController.view)
         }
+        
+        //限制宽度
+        self.menuViewController.view.frame = CGRect(x: -SlideMenuOptions.DrawerWidth, y: 0, width: SlideMenuOptions.DrawerWidth, height: SlideMenuOptions.DrawerHeight)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

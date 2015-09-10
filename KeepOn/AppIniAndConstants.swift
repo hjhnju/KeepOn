@@ -32,6 +32,9 @@ struct StoryBoardIdentifier {
     static let AddDiaryViewControllerID = "AddDiaryViewControllerID"
     static let AddDiaryNavViewControllerID = "AddDiaryNavViewControllerID"
     
+    //variable
+    static let VariableViewControllerID = "VariableViewControllerID"
+    
     //segue
     static let ShowAddDiarySegue = "ShowAddDiarySegue"
     static let UnwindSaveSegue = "UnwindSaveSegue"
