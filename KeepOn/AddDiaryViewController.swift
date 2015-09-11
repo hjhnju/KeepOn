@@ -59,6 +59,8 @@ class AddDiaryViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
         colorPickView.delegate = self
         colorPickView.selectRow(row, inComponent: 0, animated: true)
         
+        self.color = self.diary?.color ?? UIColor.orangeColor()
+        
     }
     
     @IBAction func cancelAction(sender: UIBarButtonItem) {

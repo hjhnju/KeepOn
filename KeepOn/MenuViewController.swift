@@ -50,7 +50,7 @@ class MenuViewController: UIViewController {
     func refresh() {
         if logined {
             headImage = UIImage(named: "default-header")
-            userName  = "Joshua"
+            userName  = "Dongdong"
             headButton.layer.cornerRadius = headButton.frame.width / 2
             headButton.clipsToBounds = true
             headButton.setTitle("", forState: .Normal)

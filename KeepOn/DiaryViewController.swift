@@ -86,8 +86,6 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
         } else {
             diary = DiaryDAO.instance.findById(diary.id)
         }
-        
-//        refresh()
     }
     
     //refresh diary data
@@ -132,10 +130,6 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
         }
     }
     
-    @IBAction func toggleMenu(sender: UIBarButtonItem) {
-        //slideMenuViewController.toggleMenu()
-    }
-    
     //MARK: JTCalendarDelegate
     
     func calendar(calendar: JTCalendarManager!, prepareDayView dayView: UIView!) {
@@ -158,9 +152,11 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
         
         //当天日期
         if calendar.dateHelper.date(now, isTheSameDayThan: dv.date) {
-            dv.textLabel.textColor    = UIColor.lightGrayColor()
+            
+            let emptyCircleColor      = diary?.color ?? UIColor.lightGrayColor()
+            dv.textLabel.textColor    = emptyCircleColor
             dv.emptyCircleView.hidden = false
-            dv.emptyCircleView.circleColor = UIColor.lightGrayColor()
+            dv.emptyCircleView.circleColor = emptyCircleColor
         }
         
         //其他月份的日期视图

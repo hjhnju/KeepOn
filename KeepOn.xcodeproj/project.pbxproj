@@ -17,7 +17,6 @@
 		724F66A21B92C856004A6805 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724F669D1B92C856004A6805 /* MenuTableViewController.swift */; };
 		724F66B61B955EF9004A6805 /* AppIniAndConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724F66B51B955EF9004A6805 /* AppIniAndConstants.swift */; };
 		724F66BD1B95A100004A6805 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724F66B71B95A100004A6805 /* ImageLoader.swift */; };
-		724F66BE1B95A100004A6805 /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724F66B81B95A100004A6805 /* HttpRequest.swift */; };
 		724F66BF1B95A100004A6805 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724F66B91B95A100004A6805 /* SwiftyJSON.swift */; };
 		724F66C01B95A100004A6805 /* UILabelExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724F66BA1B95A100004A6805 /* UILabelExtentions.swift */; };
 		724F66C11B95A100004A6805 /* StringExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724F66BB1B95A100004A6805 /* StringExtentions.swift */; };
@@ -80,7 +79,6 @@
 		724F669D1B92C856004A6805 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		724F66B51B955EF9004A6805 /* AppIniAndConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppIniAndConstants.swift; sourceTree = "<group>"; };
 		724F66B71B95A100004A6805 /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
-		724F66B81B95A100004A6805 /* HttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
 		724F66B91B95A100004A6805 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		724F66BA1B95A100004A6805 /* UILabelExtentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExtentions.swift; sourceTree = "<group>"; };
 		724F66BB1B95A100004A6805 /* StringExtentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtentions.swift; sourceTree = "<group>"; };
@@ -220,7 +218,6 @@
 				72A6C2971B9D86FA00BEE2B5 /* CoreDataDAO.swift */,
 				724F67091B9C36E6004A6805 /* EmptyCircleView.swift */,
 				724F66B71B95A100004A6805 /* ImageLoader.swift */,
-				724F66B81B95A100004A6805 /* HttpRequest.swift */,
 				724F66B91B95A100004A6805 /* SwiftyJSON.swift */,
 				724F66BA1B95A100004A6805 /* UILabelExtentions.swift */,
 				724F66BB1B95A100004A6805 /* StringExtentions.swift */,
@@ -350,6 +347,7 @@
 				TargetAttributes = {
 					724F66731B929F0A004A6805 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = H7P27HMFW7;
 					};
 					724F66881B929F0A004A6805 = {
 						CreatedOnToolsVersion = 6.4;
@@ -469,7 +467,6 @@
 				724F66B61B955EF9004A6805 /* AppIniAndConstants.swift in Sources */,
 				72A6C3361BA11CC100BEE2B5 /* MainViewController.swift in Sources */,
 				72A6C3171B9F07E300BEE2B5 /* DiaryManagedObject.swift in Sources */,
-				724F66BE1B95A100004A6805 /* HttpRequest.swift in Sources */,
 				72A6C2941B9D86DE00BEE2B5 /* DiaryDAO.swift in Sources */,
 				72A6C3041B9EA99200BEE2B5 /* DiaryPlistDAO.swift in Sources */,
 				724F66CA1B95B88C004A6805 /* Diary.swift in Sources */,
@@ -617,10 +614,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = KeepOn/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "KeepOn/KeepOn-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -632,10 +632,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = KeepOn/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "KeepOn/KeepOn-Bridging-Header.h";
 			};
 			name = Release;

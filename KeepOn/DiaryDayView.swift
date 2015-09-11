@@ -20,7 +20,7 @@ class DiaryDayView: JTCalendarDayView {
         emptyCircleView = EmptyCircleView()
         self.addSubview(emptyCircleView)
         
-        emptyCircleView.circleColor = UIColor.lightGrayColor()
+        emptyCircleView.circleColor     = UIColor.lightGrayColor()
         emptyCircleView.backgroundColor = UIColor.clearColor()
         emptyCircleView.hidden = true
         emptyCircleView.clipsToBounds = true
