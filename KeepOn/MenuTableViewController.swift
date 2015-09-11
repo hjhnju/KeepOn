@@ -172,7 +172,7 @@ class MenuTableViewController: UITableViewController {
                 if let dvc = mainViewController {
                     //dvc.performSegueWithIdentifier(item["segue"], sender: nil)
                     dvc.slideMenuViewController.toggleMenu()
-                    let nav = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(StoryBoardIdentifier.AddDiaryNavViewControllerID) as! UINavigationController
+                    let nav = UIStoryboard(name: "Diary", bundle: nil).instantiateViewControllerWithIdentifier(StoryBoardIdentifier.AddDiaryNavViewControllerID) as! UINavigationController
                     self.presentViewController(nav, animated: true, completion: nil)
                 }
             }

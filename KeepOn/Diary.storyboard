@@ -162,34 +162,28 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TGY-hj-3DT" userLabel="colorPickView">
-                                <rect key="frame" x="16" y="188" width="568" height="40"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="3k3-OT-RqA"/>
-                                </constraints>
-                            </view>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fVo-3U-TV1">
+                                <rect key="frame" x="16" y="186" width="568" height="162"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ISd-48-G3Q" firstAttribute="top" secondItem="Kkf-Jk-DAC" secondAttribute="bottom" constant="20" id="3NO-Av-TBC"/>
-                            <constraint firstItem="FnW-4l-WHS" firstAttribute="top" secondItem="TGY-hj-3DT" secondAttribute="bottom" constant="398" id="9hu-0x-ZKg"/>
-                            <constraint firstItem="TGY-hj-3DT" firstAttribute="top" secondItem="V0b-j6-dJS" secondAttribute="bottom" constant="10" id="Gdu-gS-BOO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fVo-3U-TV1" secondAttribute="trailing" id="FDR-pC-Q1W"/>
                             <constraint firstItem="Akv-DL-6TB" firstAttribute="top" secondItem="ISd-48-G3Q" secondAttribute="bottom" constant="10" id="OWn-cB-MnN"/>
+                            <constraint firstItem="fVo-3U-TV1" firstAttribute="leading" secondItem="LW0-Xv-W1k" secondAttribute="leadingMargin" id="QMh-rC-c9M"/>
                             <constraint firstItem="Akv-DL-6TB" firstAttribute="trailing" secondItem="ISd-48-G3Q" secondAttribute="trailing" id="ZNE-CH-UyQ"/>
-                            <constraint firstItem="TGY-hj-3DT" firstAttribute="leading" secondItem="V0b-j6-dJS" secondAttribute="leading" id="aaQ-bi-hSQ"/>
                             <constraint firstItem="V0b-j6-dJS" firstAttribute="trailing" secondItem="Akv-DL-6TB" secondAttribute="trailing" id="bOs-5L-m5o"/>
-                            <constraint firstItem="TGY-hj-3DT" firstAttribute="trailing" secondItem="V0b-j6-dJS" secondAttribute="trailing" id="hL9-WX-rqN"/>
                             <constraint firstItem="V0b-j6-dJS" firstAttribute="leading" secondItem="Akv-DL-6TB" secondAttribute="leading" id="ix6-7D-Kb6"/>
                             <constraint firstItem="ISd-48-G3Q" firstAttribute="leading" secondItem="LW0-Xv-W1k" secondAttribute="leadingMargin" id="naq-KD-DQA"/>
                             <constraint firstItem="V0b-j6-dJS" firstAttribute="top" secondItem="Akv-DL-6TB" secondAttribute="bottom" constant="10" id="o8u-eW-Yc3"/>
                             <constraint firstItem="FnW-4l-WHS" firstAttribute="top" secondItem="ISd-48-G3Q" secondAttribute="bottom" constant="485" id="qfY-pB-SFZ"/>
                             <constraint firstItem="Akv-DL-6TB" firstAttribute="leading" secondItem="ISd-48-G3Q" secondAttribute="leading" id="s5U-87-eOG"/>
+                            <constraint firstItem="fVo-3U-TV1" firstAttribute="top" secondItem="V0b-j6-dJS" secondAttribute="bottom" constant="8" id="vNu-9f-Jal"/>
                             <constraint firstItem="ISd-48-G3Q" firstAttribute="trailing" secondItem="LW0-Xv-W1k" secondAttribute="trailingMargin" id="z7g-FT-MbI"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="9hu-0x-ZKg"/>
                                 <exclude reference="qfY-pB-SFZ"/>
                             </mask>
                         </variation>
@@ -208,7 +202,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="colorPickLabel" destination="V0b-j6-dJS" id="nDJ-hJ-7a8"/>
-                        <outlet property="colorPickView" destination="TGY-hj-3DT" id="g9d-Fx-vCb"/>
+                        <outlet property="colorPickView" destination="fVo-3U-TV1" id="Jga-tA-ThR"/>
                         <outlet property="diaryNameField" destination="Akv-DL-6TB" id="kdj-el-2fv"/>
                         <outlet property="diaryNameLabel" destination="ISd-48-G3Q" id="9wL-qC-aQw"/>
                         <outlet property="saveButton" destination="2ar-aS-4K9" id="1BK-oP-krJ"/>

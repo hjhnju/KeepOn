@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddDiaryViewController: UIViewController {
+class AddDiaryViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
     
     var diary: Diary?
     
@@ -23,44 +23,42 @@ class AddDiaryViewController: UIViewController {
         }
     }
     
-    var colors = [UIColor.orangeColor(), UIColor.blueColor(), UIColor.brownColor(), UIColor.greenColor(), UIColor.lightGrayColor()]
+    var colorNames = ["blue", "brown", "orange", "green", "gray"]
     
-    var colorIndex: Int! {
-        get {
-            return 0
-        }
-        set {
-            //set colorPickView index
-        }
-    }
-
+    var colors = [UIColor.blueColor(), UIColor.brownColor(), UIColor.orangeColor(), UIColor.greenColor(), UIColor.lightGrayColor()]
+    
+    var color: UIColor!
+    
     @IBOutlet weak var diaryNameLabel: UILabel!
     @IBOutlet weak var diaryNameField: UITextField!
     
     @IBOutlet weak var colorPickLabel: UILabel!
-    @IBOutlet weak var colorPickView: UIView!
+    @IBOutlet weak var colorPickView: UIPickerView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        colorPickView.backgroundColor = UIColor.clearColor()
-        
+        //默认用orange
+        var row = 2
         if diary != nil {
             self.title = "编辑日历"
             self.name = diary?.name
             self.saveButton.title = "保存"
+            for i in 0..<colors.count {
+                if colors[i] == diary!.color {
+                    row = i
+                }
+            }
         } else {
             self.title = "新建日历"
             self.saveButton.title = "现在开始吧"
         }
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        colorPickView.dataSource = self
+        colorPickView.delegate = self
+        colorPickView.selectRow(row, inComponent: 0, animated: true)
+        
     }
     
     @IBAction func cancelAction(sender: UIBarButtonItem) {
@@ -84,13 +82,33 @@ class AddDiaryViewController: UIViewController {
     private func createNewDiary() {
         let lastMaxID = DiaryPlistDAO.instance.getAvailableMaxDiaryId()
         diary        = Diary(id: lastMaxID, name: self.name)
-        diary?.color = UIColor.blueColor()
+        diary?.color = self.color
         DiaryDAO.instance.create(diary!)
     }
     
     private func updateDiary(){
         diary?.name  = name
-        diary?.color = colors[colorIndex]
+        diary?.color = self.color
         DiaryDAO.instance.modify(diary!)
+    }
+    
+    //MARK: UIPickerViewDataSource
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int)->Int {
+        return colorNames.count
+    }
+    
+    //MARK: UIPickerViewDelegate
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        return colorNames[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        color = colors[row]
     }
 }

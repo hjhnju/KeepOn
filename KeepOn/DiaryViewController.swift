@@ -11,7 +11,11 @@ import JTCalendar
 
 class DiaryViewController: UIViewController, JTCalendarDelegate{
     
-    var diary: Diary!
+    var diary: Diary! {
+        didSet {
+            refresh()
+        }
+    }
     
     var manager: JTCalendarManager!
     
@@ -30,11 +34,6 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
         
         //descview
         descView.backgroundColor = SceneColor.crystalGray
-        
-        monthCountLabel.textColor = UIColor.orangeColor()
-        totalCountLabel.textColor = UIColor.orangeColor()
-        monthTipLabel.textColor   = UIColor.orangeColor()
-        totalTipLabel.textColor   = UIColor.orangeColor()
         
         monthCountLabel.font = UIFont(name: SceneFont.heiti, size: 48)
         totalCountLabel.font = UIFont(name: SceneFont.heiti, size: 48)
@@ -63,10 +62,10 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
         
         calMenuView.scrollView.scrollEnabled = false
         
+        refresh()
     }
     
     override func viewDidAppear(animated: Bool) {
-    
         if diary == nil {
             //优先所见的最后视图
             if let id = DiaryPlistDAO.instance.getLastViewDiaryId() {
@@ -88,20 +87,23 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
             diary = DiaryDAO.instance.findById(diary.id)
         }
         
-        refresh()
+//        refresh()
     }
     
     //refresh diary data
     func refresh() {
+        
+        let labelColor: UIColor = diary?.color ?? UIColor.orangeColor()
+        monthCountLabel.textColor = labelColor
+        totalCountLabel.textColor = labelColor
+        monthTipLabel.textColor   = labelColor
+        totalTipLabel.textColor   = labelColor
+        
         self.title = diary?.name
         self.parentViewController?.title = diary?.name
         
         self.manager.reload()
-        
         let monthDate = manager.date()
-        let formater = NSDateFormatter()
-        formater.dateFormat = "yyyy-MM-dd"
-        NSLog("refresh=\(formater.stringFromDate(monthDate))")
         
         refreshMonthLabel()
         refreshTotalLabel()

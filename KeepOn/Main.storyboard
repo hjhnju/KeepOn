@@ -23,7 +23,7 @@
                                 <action selector="showMenu:" destination="8sT-Lj-SML" id="iLZ-dg-cfa"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="organize" id="RWG-n6-dHI">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="RWG-n6-dHI">
                             <connections>
                                 <action selector="showActions:" destination="8sT-Lj-SML" id="qfA-yl-SWY"/>
                             </connections>

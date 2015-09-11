@@ -41,7 +41,6 @@
 		72A6C31C1B9FE24A00BEE2B5 /* DiaryMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C31B1B9FE24A00BEE2B5 /* DiaryMap.swift */; };
 		72A6C31F1BA0316F00BEE2B5 /* Variable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72A6C31E1BA0316F00BEE2B5 /* Variable.storyboard */; };
 		72A6C3211BA0319500BEE2B5 /* VariableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C3201BA0319500BEE2B5 /* VariableViewController.swift */; };
-		72A6C3231BA031AF00BEE2B5 /* AddVarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C3221BA031AF00BEE2B5 /* AddVarViewController.swift */; };
 		72A6C3251BA031DF00BEE2B5 /* AddVarItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C3241BA031DF00BEE2B5 /* AddVarItemViewController.swift */; };
 		72A6C3281BA0322500BEE2B5 /* Variable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C3271BA0322500BEE2B5 /* Variable.swift */; };
 		72A6C32A1BA03ABF00BEE2B5 /* VariableManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A6C3291BA03ABF00BEE2B5 /* VariableManagedObject.swift */; };
@@ -106,7 +105,6 @@
 		72A6C31B1B9FE24A00BEE2B5 /* DiaryMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryMap.swift; sourceTree = "<group>"; };
 		72A6C31E1BA0316F00BEE2B5 /* Variable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Variable.storyboard; sourceTree = "<group>"; };
 		72A6C3201BA0319500BEE2B5 /* VariableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariableViewController.swift; sourceTree = "<group>"; };
-		72A6C3221BA031AF00BEE2B5 /* AddVarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVarViewController.swift; sourceTree = "<group>"; };
 		72A6C3241BA031DF00BEE2B5 /* AddVarItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVarItemViewController.swift; sourceTree = "<group>"; };
 		72A6C3271BA0322500BEE2B5 /* Variable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Variable.swift; sourceTree = "<group>"; };
 		72A6C3291BA03ABF00BEE2B5 /* VariableManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VariableManagedObject.swift; sourceTree = "<group>"; };
@@ -266,7 +264,6 @@
 				72A6C31E1BA0316F00BEE2B5 /* Variable.storyboard */,
 				72A6C3201BA0319500BEE2B5 /* VariableViewController.swift */,
 				72A6C3241BA031DF00BEE2B5 /* AddVarItemViewController.swift */,
-				72A6C3221BA031AF00BEE2B5 /* AddVarViewController.swift */,
 			);
 			name = Variable;
 			sourceTree = "<group>";
@@ -478,7 +475,6 @@
 				724F66CA1B95B88C004A6805 /* Diary.swift in Sources */,
 				724F66C11B95A100004A6805 /* StringExtentions.swift in Sources */,
 				724F66BF1B95A100004A6805 /* SwiftyJSON.swift in Sources */,
-				72A6C3231BA031AF00BEE2B5 /* AddVarViewController.swift in Sources */,
 				724F67081B9BF70A004A6805 /* NSDateExtention.swift in Sources */,
 				72A6C3211BA0319500BEE2B5 /* VariableViewController.swift in Sources */,
 				72A6C3301BA03BE700BEE2B5 /* VariableValuesDAO.swift in Sources */,

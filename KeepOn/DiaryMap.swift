@@ -39,7 +39,7 @@ class DiaryMap {
         
         let formater = NSDateFormatter()
         formater.dateFormat = "yyyy-MM-dd"
-        NSLog("diary:\(diaryId), cancelFinishDay=\(formater.stringFromDate(date))")
+        NSLog("[CancelFinish]diary=\(diaryId), day=\(formater.stringFromDate(date))")
         
         return value == nil ? false : true
     }
@@ -48,7 +48,7 @@ class DiaryMap {
     func confirmFinishDayForDiary(diaryId: Int, finishDay: NSDate, optTime: NSDate) -> Bool {
         let formater = NSDateFormatter()
         formater.dateFormat = "yyyy-MM-dd"
-        NSLog("diary:\(diaryId), finishDay=\(formater.stringFromDate(finishDay))")
+        NSLog("[ConfirmFinish]diary=\(diaryId), finishDay=\(formater.stringFromDate(finishDay))")
         
         if self.finishDays[finishDay] == nil {
             self.finishDays[finishDay] = [diaryId: optTime]

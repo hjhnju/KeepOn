@@ -19,12 +19,32 @@ class Variable {
     
     var icon = "menu-index"
     
-    var valueMap = [NSDate: Float]()
+    var valueMap = [NSDate: CGFloat]()
+    
+    var maxValue: CGFloat?
+    
+    var minValue: CGFloat?
     
     init(id: Int, name: String){
-        self.id = id
-        self.name = name
+        self.id    = id
+        self.name  = name
         self.color = UIColor.orangeColor()
+    }
+    
+    func loadData(){
+        self.valueMap = VariableValuesDAO.instance.findAllOf(self.id)
+        var max = self.maxValue ?? CGFloat.min
+        var min = self.minValue ?? CGFloat.max
+        for value in self.valueMap.values {
+            if max < value {
+                max = value
+                self.maxValue = max
+            }
+            if min > value {
+                min = value
+                self.minValue = min
+            }
+        }
     }
     
 }

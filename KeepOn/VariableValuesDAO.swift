@@ -25,14 +25,14 @@ class VariableValuesDAO: CoreDataDAO {
         return Static.instance!
     }
     
-    func insertRow(varId: Int, date: NSDate, value: NSDate) -> Int {
+    func insertRow(varId: Int, date: NSDate, value: CGFloat) -> Int {
         
         var ctx = self.managedObjectContext!
         
-        let diaryMap = NSEntityDescription.insertNewObjectForEntityForName("VariableValues", inManagedObjectContext: ctx) as! NSManagedObject
-        diaryMap.setValue(varId, forKey: "varId")
-        diaryMap.setValue(date, forKey: "date")
-        diaryMap.setValue(value, forKey: "value")
+        let valueMap = NSEntityDescription.insertNewObjectForEntityForName("VariableValues", inManagedObjectContext: ctx) as! VariableValuesManagedObject
+        valueMap.setValue(varId, forKey: "varId")
+        valueMap.setValue(date, forKey: "date")
+        valueMap.setValue(value, forKey: "value")
         
         var error: NSError? = nil
         if ctx.hasChanges && !ctx.save(&error) {
@@ -68,29 +68,26 @@ class VariableValuesDAO: CoreDataDAO {
         return 0
     }
     
-    func findAll() -> [NSDate: Float] {
+    //字典是无序的，结果需要使用者自己排序了
+    func findAllOf(id: Int) -> [NSDate: CGFloat] {
         
         var ctx = self.managedObjectContext!
         
         let entity = NSEntityDescription.entityForName("VariableValues", inManagedObjectContext: ctx)
         
-        let fetchRequest = NSFetchRequest()
-        fetchRequest.entity = entity
-        
-        var sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
-        var sortDescriptors = NSArray(objects: sortDescriptor)
-        fetchRequest.sortDescriptors = [sortDescriptor]
+        let fetchRequest       = NSFetchRequest()
+        fetchRequest.entity    = entity
+        fetchRequest.predicate = NSPredicate(format: "varId = %i", id)
         
         var error: NSError? = nil
-        var retlistData = [NSDate: Float]()
-        var listData = ctx.executeFetchRequest(fetchRequest, error: &error)
+        var retlistData     = [NSDate: CGFloat]()
+        var listData        = ctx.executeFetchRequest(fetchRequest, error: &error)
         if let list = listData {
             for item in list {
                 let mo = item as! VariableValuesManagedObject
-                retlistData[mo.date] = mo.value as? Float
+                retlistData[mo.date] = mo.value as? CGFloat
             }
         }
-        
         return retlistData
     }
     

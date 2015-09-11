@@ -79,7 +79,7 @@ class SlideMenuViewController: UIViewController {
         self.refreshMask()
         
         //添加用户拖动事件
-        self.mainViewController.view.addGestureRecognizer(panGestureRecognizer)
+        //self.mainViewController.view.addGestureRecognizer(panGestureRecognizer)
     }
     
     func updateMenuViewController() {
