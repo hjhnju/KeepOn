@@ -86,6 +86,8 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
         } else {
             diary = DiaryDAO.instance.findById(diary.id)
         }
+        
+        DiaryPlistDAO.instance.setLastViewDiaryId(diary.id)
     }
     
     //refresh diary data
@@ -101,7 +103,6 @@ class DiaryViewController: UIViewController, JTCalendarDelegate{
         self.parentViewController?.title = diary?.name
         
         self.manager.reload()
-        let monthDate = manager.date()
         
         refreshMonthLabel()
         refreshTotalLabel()

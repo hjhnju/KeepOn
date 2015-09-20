@@ -27,7 +27,7 @@ class VariableValuesDAO: CoreDataDAO {
     
     func insertRow(varId: Int, date: NSDate, value: CGFloat) -> Int {
         
-        var ctx = self.managedObjectContext!
+        let ctx = self.managedObjectContext!
         
         let valueMap = NSEntityDescription.insertNewObjectForEntityForName("VariableValues", inManagedObjectContext: ctx) as! VariableValuesManagedObject
         valueMap.setValue(varId, forKey: "varId")
@@ -35,15 +35,20 @@ class VariableValuesDAO: CoreDataDAO {
         valueMap.setValue(value, forKey: "value")
         
         var error: NSError? = nil
-        if ctx.hasChanges && !ctx.save(&error) {
-            NSLog("插入数据失败:\(error), \(error!.userInfo)")
-            return -1
+        if ctx.hasChanges {
+            do {
+                try ctx.save()
+            } catch let error1 as NSError {
+                error = error1
+                NSLog("插入数据失败:\(error), \(error!.userInfo)")
+                return -1
+            }
         }
         return 1
     }
     
     func removeRow(varId: Int, date: NSDate) -> Int{
-        var ctx = self.managedObjectContext!
+        let ctx = self.managedObjectContext!
         
         let entity = NSEntityDescription.entityForName("VariableValues", inManagedObjectContext: ctx)
         
@@ -51,19 +56,23 @@ class VariableValuesDAO: CoreDataDAO {
         fetchRequest.entity    = entity
         fetchRequest.predicate = NSPredicate(format: "varId = %i and date = %@", varId, date)
         
-        var error: NSError? = nil
-        if let listData = ctx.executeFetchRequest(fetchRequest, error: &error) {
+        do {
+            let listData = try ctx.executeFetchRequest(fetchRequest)
             if listData.count > 0 {
                 let mo = listData.last as! NSManagedObject
                 ctx.deleteObject(mo)
                 
-                if ctx.hasChanges && !ctx.save(&error) {
-                    NSLog("删除数据失败:\(error), \(error!.userInfo)")
-                    return -1
-                } else {
-                    return 1
+                if ctx.hasChanges {
+                    do {
+                        try ctx.save()
+                    } catch let error as NSError {
+                        NSLog("删除数据失败:\(error), \(error.userInfo)")
+                        return -1
+                    }
                 }
             }
+        } catch let error as NSError {
+            NSLog("请求失败:\(error), \(error.userInfo)")
         }
         return 0
     }
@@ -71,7 +80,7 @@ class VariableValuesDAO: CoreDataDAO {
     //字典是无序的，结果需要使用者自己排序了
     func findAllOf(id: Int) -> [NSDate: CGFloat] {
         
-        var ctx = self.managedObjectContext!
+        let ctx = self.managedObjectContext!
         
         let entity = NSEntityDescription.entityForName("VariableValues", inManagedObjectContext: ctx)
         
@@ -79,13 +88,19 @@ class VariableValuesDAO: CoreDataDAO {
         fetchRequest.entity    = entity
         fetchRequest.predicate = NSPredicate(format: "varId = %i", id)
         
-        var error: NSError? = nil
         var retlistData     = [NSDate: CGFloat]()
-        var listData        = ctx.executeFetchRequest(fetchRequest, error: &error)
+        var listData: [AnyObject]?
+        do {
+            listData = try ctx.executeFetchRequest(fetchRequest)
+        } catch let error as NSError {
+            
+            NSLog("请求失败:\(error), \(error.userInfo)")
+            listData = nil
+        }
         if let list = listData {
             for item in list {
                 let mo = item as! VariableValuesManagedObject
-                retlistData[mo.date] = mo.value as? CGFloat
+                retlistData[mo.date] = mo.value as CGFloat
             }
         }
         return retlistData

@@ -42,7 +42,7 @@ class MainViewController: UIViewController {
             currentMainSubviewController = diaryViewController
         }
         //2.菜单
-        let menuViewController = UIStoryboard(name: "Menu", bundle: nil).instantiateViewControllerWithIdentifier(StoryBoardIdentifier.MenuViewControllerID) as! UIViewController
+        let menuViewController = UIStoryboard(name: "Menu", bundle: nil).instantiateViewControllerWithIdentifier(StoryBoardIdentifier.MenuViewControllerID) 
         slideMenuViewController = SlideMenuViewController(main: self, menu: menuViewController)
     }
     

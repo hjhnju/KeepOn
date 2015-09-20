@@ -16,7 +16,7 @@ extension NSDate {
         let components = NSDateComponents()
         components.month = addMonths
     
-        let nextMonthDate = calendar.dateByAddingComponents(components, toDate: self, options: NSCalendarOptions.allZeros)
+        let nextMonthDate = calendar.dateByAddingComponents(components, toDate: self, options: NSCalendarOptions())
         
         return nextMonthDate
     }

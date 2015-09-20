@@ -14,7 +14,7 @@ class DiaryMap {
     
     var minDays: [Int:NSDate]!
     
-    init(var finishDays: [NSDate: [Int:NSDate]]) {
+    init(finishDays: [NSDate: [Int:NSDate]]) {
         self.finishDays = finishDays
         self.minDays    = [Int:NSDate]()
     }
@@ -22,7 +22,7 @@ class DiaryMap {
     //判断是否是已达成任务的日期
     func isFinishDay(diaryId: Int, date: NSDate) -> Bool {
         if let map = self.finishDays[date] {
-            if let ret = map[diaryId] {
+            if let _ = map[diaryId] {
                 return true
             }
         }
@@ -63,7 +63,7 @@ class DiaryMap {
     func hasOtherEventForDiaryDay(diaryId: Int, date: NSDate) -> Bool {
         if let map = self.finishDays[date] {
             if map.count == 1 {
-                if let ret = map[diaryId] {
+                if let _ = map[diaryId] {
                     return false
                 } else {
                     return true
@@ -109,7 +109,7 @@ class DiaryMap {
             }
             
             //2. 统计总数
-            if let id = map[diaryId] {
+            if let _ = map[diaryId] {
                 count += 1
             }
         }
@@ -118,7 +118,7 @@ class DiaryMap {
     
     //日历的最早日期
     func earlestDate(diaryId: Int) -> NSDate {
-        return minDays[diaryId] ?? (NSDate.distantPast() as! NSDate)
+        return minDays[diaryId] ?? (NSDate.distantPast() )
     }
     
     private func finishedDaysByDuration(diaryId: Int, startDate: NSDate, endDate: NSDate) -> Int {
@@ -126,7 +126,7 @@ class DiaryMap {
         for (date, map) in self.finishDays {
             let comptoStart = date.compare(startDate)
             if (comptoStart == NSComparisonResult.OrderedDescending || comptoStart == NSComparisonResult.OrderedSame)  && date.compare(endDate) == NSComparisonResult.OrderedAscending {
-                if let id = map[diaryId] {
+                if let _ = map[diaryId] {
                     count += 1
                 }
             }

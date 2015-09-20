@@ -18,7 +18,7 @@ class AddDiaryViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
         }
         set {
             if let value = newValue {
-                diaryNameField.text = newValue
+                diaryNameField.text = value
             }
         }
     }
@@ -106,7 +106,7 @@ class AddDiaryViewController: UIViewController,UIPickerViewDataSource,UIPickerVi
     
     //MARK: UIPickerViewDelegate
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return colorNames[row]
     }
     

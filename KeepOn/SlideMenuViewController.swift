@@ -54,7 +54,7 @@ class SlideMenuViewController: UIViewController {
     
     //MASK: View Life Cycle
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -111,8 +111,8 @@ class SlideMenuViewController: UIViewController {
     //用户拖动视图调用代理方法。
     func panGestureHandler(gesture: UIPanGestureRecognizer){
         //用户对视图操控的状态。
-        var state    = gesture.state;
-        var location = gesture.locationInView(self.menuViewController.view)
+        let state    = gesture.state;
+        let location = gesture.locationInView(self.menuViewController.view)
         var velocity = gesture.velocityInView(self.menuViewController.view)
         
         switch (state) {

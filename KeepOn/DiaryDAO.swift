@@ -26,19 +26,24 @@ class DiaryDAO: CoreDataDAO {
     
     func findAll() -> [Diary] {
         
-        var ctx = self.managedObjectContext!
+        let ctx = self.managedObjectContext!
         
         let entity = NSEntityDescription.entityForName("Diary", inManagedObjectContext: ctx)
         
         let fetchRequest = NSFetchRequest()
         fetchRequest.entity = entity
         
-        var sortDescriptor = NSSortDescriptor(key: "id", ascending: true)
-        var sortDescriptors = NSArray(objects: sortDescriptor)
+        let sortDescriptor = NSSortDescriptor(key: "id", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor] //.sortDescriptors = sortDescriptors as! [
-        var error: NSError? = nil
+
         var retlistData = [Diary]()
-        var listData = ctx.executeFetchRequest(fetchRequest, error: &error)
+        var listData: [AnyObject]?
+        do {
+            listData = try ctx.executeFetchRequest(fetchRequest)
+        } catch let error as NSError {
+            NSLog("请求失败:\(error), \(error.userInfo)")
+            listData = nil
+        }
         if let list = listData {
             for item in list {
                 let diary = createFromMO(item as! NSManagedObject)
@@ -50,7 +55,7 @@ class DiaryDAO: CoreDataDAO {
     
     func findById(id: Int) -> Diary? {
         
-        var ctx = self.managedObjectContext!
+        let ctx = self.managedObjectContext!
         
         let entity = NSEntityDescription.entityForName("Diary", inManagedObjectContext: ctx)
         
@@ -58,35 +63,41 @@ class DiaryDAO: CoreDataDAO {
         fetchRequest.entity = entity
         fetchRequest.predicate = NSPredicate(format: "id = %i", id)
         
-        var error: NSError? = nil
-        if let listData = ctx.executeFetchRequest(fetchRequest, error: &error) {
+        do {
+            let listData = try ctx.executeFetchRequest(fetchRequest)
             if listData.count > 0 {
                 let diary = createFromMO(listData.last as! NSManagedObject)
                 return diary
             }
+        } catch let error as NSError {
+            
+            NSLog("请求失败:\(error), \(error.userInfo)")
         }
         
         return nil
     }
     
     func create(model: Diary) -> Int {
-        var ctx = self.managedObjectContext!
+        let ctx = self.managedObjectContext!
         
-        let diary = NSEntityDescription.insertNewObjectForEntityForName("Diary", inManagedObjectContext: ctx) as! NSManagedObject
+        let diary = NSEntityDescription.insertNewObjectForEntityForName("Diary", inManagedObjectContext: ctx) 
         diary.setValue(model.id, forKey: "id")
         diary.setValue(model.name, forKey: "name")
         diary.setValue(model.color, forKey: "color")
         
-        var error: NSError? = nil
-        if ctx.hasChanges && !ctx.save(&error) {
-            NSLog("插入数据失败:\(error), \(error!.userInfo)")
-            return -1
+        if ctx.hasChanges {
+            do {
+                try ctx.save()
+            } catch let error as NSError {
+                NSLog("插入数据失败:\(error), \(error.userInfo)")
+                return -1
+            }
         }
         return 1
     }
     
     func remove(model: Diary) -> Int {
-        var ctx = self.managedObjectContext!
+        let ctx = self.managedObjectContext!
         
         let entity = NSEntityDescription.entityForName("Diary", inManagedObjectContext: ctx)
         
@@ -94,25 +105,28 @@ class DiaryDAO: CoreDataDAO {
         fetchRequest.entity    = entity
         fetchRequest.predicate = NSPredicate(format: "id = %i", model.id)
         
-        var error: NSError? = nil
-        if let listData = ctx.executeFetchRequest(fetchRequest, error: &error) {
+        do {
+            let listData = try ctx.executeFetchRequest(fetchRequest)
             if listData.count > 0 {
                 let mo = listData.last as! NSManagedObject
                 ctx.deleteObject(mo)
                 
-                if ctx.hasChanges && !ctx.save(&error) {
-                    NSLog("删除数据失败:\(error), \(error!.userInfo)")
-                    return -1
-                } else {
-                    return 1
-                }
-            }
+                if ctx.hasChanges {
+                    do {
+                        try ctx.save()
+                    } catch let error as NSError {
+                        NSLog("删除数据失败:\(error), \(error.userInfo)")
+                        return -1
+                    }
+                }            }
+        } catch let error as NSError {
+            NSLog("请求失败:\(error), \(error.userInfo)")
         }
         return 0
     }
     
     func modify(model: Diary) -> Int {
-        var ctx = self.managedObjectContext!
+        let ctx = self.managedObjectContext!
         
         let entity = NSEntityDescription.entityForName("Diary", inManagedObjectContext: ctx)
         
@@ -120,28 +134,32 @@ class DiaryDAO: CoreDataDAO {
         fetchRequest.entity    = entity
         fetchRequest.predicate = NSPredicate(format: "id = %i", model.id)
         
-        var error: NSError? = nil
-        if let listData = ctx.executeFetchRequest(fetchRequest, error: &error) {
+        do {
+            let listData = try ctx.executeFetchRequest(fetchRequest)
             if listData.count > 0 {
                 let mo = listData.last as! NSManagedObject
                 self.updateFromModel(mo, model: model)
                 
-                if ctx.hasChanges && !ctx.save(&error) {
-                    NSLog("删除数据失败:\(error), \(error!.userInfo)")
-                    return -1
-                } else {
-                    return 1
+                if ctx.hasChanges {
+                    do {
+                        try ctx.save()
+                    } catch let error as NSError {
+                        NSLog("修改数据失败:\(error), \(error.userInfo)")
+                        return -1
+                    }
                 }
             }
+        } catch let error as NSError {
+            NSLog("请求失败:\(error), \(error.userInfo)")
         }
         return 0
     }
     
     //从MangedObject获得Diary
     private func createFromMO(mo: NSManagedObject) -> Diary {
-        var id        = mo.valueForKey("id") as! Int
-        var name      = mo.valueForKey("name") as! String
-        var color     = mo.valueForKey("color") as! UIColor
+        let id        = mo.valueForKey("id") as! Int
+        let name      = mo.valueForKey("name") as! String
+        let color     = mo.valueForKey("color") as! UIColor
         
         let diary       = Diary(id: id, name: name)
         diary.color     = color

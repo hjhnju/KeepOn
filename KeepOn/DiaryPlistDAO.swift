@@ -71,7 +71,14 @@ class DiaryPlistDAO {
         let dbFileExists = fileManager.fileExistsAtPath(path)
         if !dbFileExists {
             let dbFile = self.resouceDocumentDirectoryFile(self.resFile)
-            let success = fileManager.copyItemAtPath(dbFile, toPath: path, error: nil)
+            var success: Bool
+            do {
+                try fileManager.copyItemAtPath(dbFile, toPath: path)
+                success = true
+            } catch let error as NSError {
+                NSLog("生成存储文件失败:\(error), \(error.userInfo)")
+                success = false
+            }
             
             assert(success, "无法生成存储文件")
         }
@@ -82,8 +89,7 @@ class DiaryPlistDAO {
     //Info.plist所在路径
     private func resouceDocumentDirectoryFile(fileName: String) -> String {
         let resoucePath = NSBundle.mainBundle().bundlePath
-        let path = resoucePath.stringByAppendingPathComponent(fileName)
-        
+        let path = resoucePath.stringByAppendingString("/\(fileName)")
         return path
     }
     

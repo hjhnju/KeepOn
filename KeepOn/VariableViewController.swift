@@ -60,7 +60,7 @@ class VariableViewController: UIViewController, ANDLineChartViewDataSource, ANDL
         
         //根据值更新
         var keys = Array(self.variable.valueMap.keys)
-        sort(&keys){
+        keys.sortInPlace{
             (d1:NSDate, d2:NSDate) -> Bool in
             let cmp = d1.compare(d2)
             return cmp == NSComparisonResult.OrderedAscending ? true : false

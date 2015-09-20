@@ -31,13 +31,6 @@ class MenuViewController: UIViewController {
             }
         }
     }
-    
-    var bgImageUrl: String? {
-        didSet {
-            if let url = bgImageUrl {
-            }
-        }
-    }
 
     //MASK: View Life Cycle
     

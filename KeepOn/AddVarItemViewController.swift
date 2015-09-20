@@ -13,7 +13,7 @@ class AddVarItemViewController: UIViewController, UITextFieldDelegate{
     var variable: Variable?
     
     var name: String? {
-        if !varNameField.text.isEmpty {
+        if !varNameField.text!.isEmpty {
             return varNameField.text
         }
         return nil
@@ -23,15 +23,16 @@ class AddVarItemViewController: UIViewController, UITextFieldDelegate{
     var day: NSDate?
     
     var value: CGFloat? {
-        if !valueTextField.text.isEmpty {
-            return CGFloat((valueTextField.text as NSString).floatValue)
+        if let text = valueTextField.text {
+            if !text.isEmpty {
+                return CGFloat((text as NSString).floatValue)
+            }
         }
         return nil
     }
 
     @IBOutlet weak var varNameField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
-    
     @IBOutlet weak var valueTextField: UITextField!
     
     override func viewDidLoad() {
@@ -41,8 +42,8 @@ class AddVarItemViewController: UIViewController, UITextFieldDelegate{
         
         self.datePicker.datePickerMode = UIDatePickerMode.Date
 
-        var maxDate = NSDate()
-        var minDate = NSDate(timeIntervalSinceNow: -7*24*60*60)
+        let maxDate = NSDate()
+        let minDate = NSDate(timeIntervalSinceNow: -7*24*60*60)
         datePicker.maximumDate = maxDate
         datePicker.minimumDate = minDate
         datePicker.date = maxDate
@@ -68,7 +69,7 @@ class AddVarItemViewController: UIViewController, UITextFieldDelegate{
         let formater = NSDateFormatter()
         formater.dateFormat = "yyyy/MM/dd"
         
-        let alert = UIAlertView()
+        let alert   = UIAlertView()
         alert.title = "保存指数"
         
         var message = ""
@@ -81,13 +82,13 @@ class AddVarItemViewController: UIViewController, UITextFieldDelegate{
         
         message += "\n\n若重复保存当天，则会覆盖旧值，请确认添加无误!"
         
-        var alertController = UIAlertController(title: "保存指数", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        var confirmAction = UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: {
-            (action: UIAlertAction!) -> Void in
+        let alertController = UIAlertController(title: "保存指数", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let confirmAction = UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: {
+            (action: UIAlertAction) -> Void in
             self.save()
             self.dismissViewControllerAnimated(true, completion: nil)
         })
-        var cancelAction  = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil)
+        let cancelAction  = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil)
         
         alertController.addAction(cancelAction)
         alertController.addAction(confirmAction)
@@ -99,7 +100,7 @@ class AddVarItemViewController: UIViewController, UITextFieldDelegate{
         self.day = sameDayFormate(sender.date)
     }
     
-    func save() -> Void {
+    private func save() -> Void {
         if let variable = self.variable {
             if let name = self.name {
                     variable.name = name
@@ -108,7 +109,6 @@ class AddVarItemViewController: UIViewController, UITextFieldDelegate{
             
             if let day = self.day {
                 if let value = self.value {
-                    
                     let formater = NSDateFormatter()
                     formater.dateFormat = "yyyy/MM/dd HH:mm:ss"
                     NSLog("[AddIndexItem]\(variable.id),\(formater.stringFromDate(day)), \(value)")
@@ -125,7 +125,7 @@ class AddVarItemViewController: UIViewController, UITextFieldDelegate{
         return true
     }
     
-    func sameDayFormate(date: NSDate) -> NSDate{
+    private func sameDayFormate(date: NSDate) -> NSDate{
         let formater = NSDateFormatter()
         formater.dateFormat = "yyyy/MM/dd 00:00:00"
         return formater.dateFromString(formater.stringFromDate(date))!

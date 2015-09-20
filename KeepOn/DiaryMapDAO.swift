@@ -26,23 +26,26 @@ class DiaryMapDAO: CoreDataDAO {
     
     func insertRow(diaryId: Int, finishDay: NSDate, optTime: NSDate) -> Int {
         
-        var ctx = self.managedObjectContext!
+        let ctx = self.managedObjectContext!
         
-        let diaryMap = NSEntityDescription.insertNewObjectForEntityForName("DiaryMap", inManagedObjectContext: ctx) as! NSManagedObject
+        let diaryMap = NSEntityDescription.insertNewObjectForEntityForName("DiaryMap", inManagedObjectContext: ctx) 
         diaryMap.setValue(diaryId, forKey: "diaryId")
         diaryMap.setValue(finishDay, forKey: "finishDay")
         diaryMap.setValue(optTime, forKey: "optTime")
         
-        var error: NSError? = nil
-        if ctx.hasChanges && !ctx.save(&error) {
-            NSLog("插入数据失败:\(error), \(error!.userInfo)")
-            return -1
+        if ctx.hasChanges {
+            do {
+                try ctx.save()
+            } catch let error as NSError {
+                NSLog("插入数据失败:\(error), \(error.userInfo)")
+                return -1
+            }
         }
         return 1
     }
     
     func removeRow(diaryId: Int, finishDay: NSDate) -> Int{
-        var ctx = self.managedObjectContext!
+        let ctx = self.managedObjectContext!
         
         let entity = NSEntityDescription.entityForName("DiaryMap", inManagedObjectContext: ctx)
         
@@ -50,46 +53,54 @@ class DiaryMapDAO: CoreDataDAO {
         fetchRequest.entity    = entity
         fetchRequest.predicate = NSPredicate(format: "diaryId = %i and finishDay = %@", diaryId, finishDay)
         
-        var error: NSError? = nil
-        if let listData = ctx.executeFetchRequest(fetchRequest, error: &error) {
+        do {
+            let listData = try ctx.executeFetchRequest(fetchRequest)
             if listData.count > 0 {
                 let mo = listData.last as! NSManagedObject
                 ctx.deleteObject(mo)
                 
-                if ctx.hasChanges && !ctx.save(&error) {
-                    NSLog("删除数据失败:\(error), \(error!.userInfo)")
-                    return -1
-                } else {
-                    return 1
+                if ctx.hasChanges {
+                    do {
+                        try ctx.save()
+                    } catch let error as NSError {
+                        NSLog("删除数据失败:\(error), \(error.userInfo)")
+                        return -1
+                    }
                 }
             }
+        } catch let error as NSError {
+            NSLog("请求失败:\(error), \(error.userInfo)")
         }
         return 0
     }
     
     func findAll() -> DiaryMap {
         
-        var ctx = self.managedObjectContext!
+        let ctx = self.managedObjectContext!
         
         let entity = NSEntityDescription.entityForName("DiaryMap", inManagedObjectContext: ctx)
         
         let fetchRequest = NSFetchRequest()
         fetchRequest.entity = entity
         
-        var sortDescriptor = NSSortDescriptor(key: "finishDay", ascending: true)
-        var sortDescriptors = NSArray(objects: sortDescriptor)
+        let sortDescriptor = NSSortDescriptor(key: "finishDay", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
-        var error: NSError? = nil
         var retlistData = [NSDate: [Int:NSDate]]()
-        var listData = ctx.executeFetchRequest(fetchRequest, error: &error)
+        var listData: [AnyObject]?
+        do {
+            listData = try ctx.executeFetchRequest(fetchRequest)
+        } catch let error as NSError {
+            NSLog("请求失败:\(error), \(error.userInfo)")
+            listData = nil
+        }
         if let list = listData {
             for item in list {
                 let mo = item as! DiaryMapManagedObject
                 if retlistData[mo.finishDay] == nil {
                     retlistData[mo.finishDay] = [Int:NSDate]()
                 }
-                retlistData[mo.finishDay]![mo.diaryId as! Int] = mo.optTime
+                retlistData[mo.finishDay]![mo.diaryId as Int] = mo.optTime
             }
         }
         

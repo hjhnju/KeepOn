@@ -23,7 +23,7 @@ class MenuTableViewController: UITableViewController {
     //MASK: Properties
     
     var menuOverview:[Int: Dictionary<String, String>] = [
-        0:["text":"添加新日历", "icon":"menu-setting", "segue":"ShowAddDiarySegue"],
+        0:["text":"添加新日历", "icon":"menu-setting", "identifier":StoryBoardIdentifier.AddDiaryNavViewControllerID],
     ]
 
     var menuDiary = [Diary]() {
@@ -105,7 +105,7 @@ class MenuTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(StoryBoardIdentifier.MenuTabelCellID, forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(StoryBoardIdentifier.MenuTabelCellID, forIndexPath: indexPath) 
         
         switch indexPath.section {
         case TableViewConstants.Setting:
@@ -170,9 +170,8 @@ class MenuTableViewController: UITableViewController {
         case TableViewConstants.Setting:
             if let item = menuOverview[indexPath.row] {
                 if let dvc = mainViewController {
-                    //dvc.performSegueWithIdentifier(item["segue"], sender: nil)
                     dvc.slideMenuViewController.toggleMenu()
-                    let nav = UIStoryboard(name: "Diary", bundle: nil).instantiateViewControllerWithIdentifier(StoryBoardIdentifier.AddDiaryNavViewControllerID) as! UINavigationController
+                    let nav = UIStoryboard(name: "Diary", bundle: nil).instantiateViewControllerWithIdentifier(item["identifier"]!) as! UINavigationController
                     self.presentViewController(nav, animated: true, completion: nil)
                 }
             }
