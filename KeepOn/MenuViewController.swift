@@ -26,8 +26,8 @@ class MenuViewController: UIViewController {
     
     var userName: String? {
         didSet {
-            if let name = userName {
-                welcome.text = "Hello! \(name)"
+            if let _ = userName {
+                welcome.text = "欢迎使用KeepOn"
             }
         }
     }

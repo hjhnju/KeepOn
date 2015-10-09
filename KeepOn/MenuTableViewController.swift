@@ -58,7 +58,7 @@ class MenuTableViewController: UITableViewController {
         if menuIndex.count == 0 {
             //为空则默认创建一个
             let id = PlistDAO.instance.getAutoIncreasedMaxId()
-            let index = Variable(id: id, name: "MyIndex One")
+            let index = Variable(id: id, name: "KeepOn Index One")
             VariableDAO.instance.create(index)
             
             menuIndex = VariableDAO.instance.findAll()

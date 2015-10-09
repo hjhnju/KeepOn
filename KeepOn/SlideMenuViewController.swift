@@ -113,7 +113,7 @@ class SlideMenuViewController: UIViewController {
         //用户对视图操控的状态。
         let state    = gesture.state;
         let location = gesture.locationInView(self.menuViewController.view)
-        var velocity = gesture.velocityInView(self.menuViewController.view)
+        var _ = gesture.velocityInView(self.menuViewController.view)
         
         switch (state) {
         case UIGestureRecognizerState.Began:
@@ -136,9 +136,6 @@ class SlideMenuViewController: UIViewController {
             self.menuViewController.view.frame = frame
             break;
         case UIGestureRecognizerState.Ended:
-            var frame = self.menuViewController.view.frame
-            //表示用户需要展开
-            let diff = location.x - startLocation.x
             let tranPoint = gesture.translationInView(self.menuViewController.view)
             if (tranPoint.x > SlideMenuOptions.ToggleLeastOffSet){
                 self.didOpen()
