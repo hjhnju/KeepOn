@@ -8,6 +8,4 @@ KeepOn相信习惯的力量，伴您持之以恒！
 
 ### 截图
 
-![p1](https://github.com/hjhnju/KeepOn/blob/master/web/p1.png)
-![p2](https://github.com/hjhnju/KeepOn/blob/master/web/p2.png)
-![p3](https://github.com/hjhnju/KeepOn/blob/master/web/p3.png)
+![p1](https://github.com/hjhnju/KeepOn/blob/master/web/show.png)
